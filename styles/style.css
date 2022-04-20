@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;800;900&display=swap);
+
+body {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  background-color: blue;
+}
+
+.top-side {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 69px;
+  background-color: yellow;
+}
+
+.top-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.screen .one {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+}
+.createQuizz {
+  display: flex;
+  margin-top: 146px;
+  width: 1050px;
+  height: 180px;
+  border: 1px solid rgba(212, 212, 212, 1);
+}
