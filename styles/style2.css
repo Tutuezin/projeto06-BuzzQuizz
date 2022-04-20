@@ -3,6 +3,7 @@
 body {
   font-family: "Roboto", sans-serif;
   width: 100%;
+  background-color: #e7e7e7;
 }
 
 .top-side {
@@ -23,21 +24,58 @@ body {
 }
 
 .banner {
-  height: 227px;
+  height: 150px;
   width: 100%;
-
-  margin-bottom: 70px;
 
   background-color: blue;
 }
 
 .container {
-  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  background-color: purple;
+  margin-top: 42px;
 }
 
-.quizzes {
+.top-quiz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+  margin-bottom: 20px;
+
+  background-color: #434ca0;
 }
 
-/* .quiz {} */
+.top-quiz h4 {
+  font-size: 23px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.quiz {
+  width: 760px;
+  height: 650px;
+  padding: 25px 34px;
+  margin-bottom: 42px;
+
+  background-color: #ffffff;
+}
+
+.choices {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.choices p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+}
