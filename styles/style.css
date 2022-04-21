@@ -3,6 +3,7 @@
 body {
   font-family: "Roboto", sans-serif;
   width: 100%;
+  background-color: #fafafa;
 }
 
 main {
@@ -190,17 +191,19 @@ p {
 .choices p {
   margin-top: 10px;
   margin-bottom: 20px;
-
+  width: 329px;
   font-size: 20px;
   font-weight: 700;
   color: #000000;
+  overflow-y: hidden;
+  height: 20px;
 }
 
 .bot-quiz {
   width: 760px;
   height: 430px;
   padding: 25px 34px;
-  margin: 42px;
+  margin-top: 42px;
 
   background-color: #ffffff;
 }

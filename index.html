@@ -14,13 +14,15 @@
 
 <body>
     <header>
-        <div class="top-side">BuzzQuizz</div>
+        <div class="top-side">
+            <h1 style="cursor: pointer;" onclick="window.location.reload()">BuzzQuizz</h1>
+        </div>
 
     </header>
 
     <main>
 
-        <div class="screen one">
+        <div class=" screen one">
             <div class="createQuizz">
                 <div class="description">Você não criou nenhum quizz ainda :(</div>
 
@@ -38,92 +40,16 @@
                 <h2 id="bannerTitle"></h2>
             </div>
 
+            <div class="container"></div>
 
-
-            <div class="quiz">
-                <header class="top-quiz">
-                    <h4>Qual o sapo mais dahora?</h4>
-                </header>
-                <div class="choices">
-                    <div class="choice-info">
-                        <img src="/assets/sapo.jpeg" alt="img" width="329px" height="175px">
-                        <p> Sapo Maromba </p>
-                    </div>
-
-                    <div class="choice-info">
-                        <img src="/assets/sapo.jpeg" alt="img" width="329px" height="175px">
-                        <p> Sapo Maromba </p>
-                    </div>
-
-                    <div class="choice-info">
-                        <img src="/assets/sapooculos.png" alt="img" width="329px" height="175px">
-                        <p> Sapo Maneiro </p>
-                    </div>
-
-                    <div class="choice-info">
-                        <img src="/assets/sapooculos.png" alt="img" width="329px" height="175px">
-                        <p> Sapo Maneiro </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quiz">
-                <header class="top-quiz">
-                    <h4>Qual o sapo mais dahora?</h4>
-                </header>
-
-                <div class="choices">
-                    <div class="choice-info">
-                        <img src="/assets/sapo.jpeg" alt="img" width="329px" height="175px">
-                        <p> Sapo Maromba </p>
-                    </div>
-
-                    <div class="choice-info">
-                        <img src="/assets/sapo.jpeg" alt="img" width="329px" height="175px">
-                        <p> Sapo Maromba </p>
-                    </div>
-
-                    <div class="choice-info">
-                        <img src="/assets/sapooculos.png" alt="img" width="329px" height="175px">
-                        <p> Sapo Maneiro </p>
-                    </div>
-
-                    <div class="choice-info">
-                        <img src="/assets/sapooculos.png" alt="img" width="329px" height="175px">
-                        <p> Sapo Maneiro </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bot-quiz">
-                <header class="quiz-score">
-                    <h4>88% de acerto: Você é praticamente um biologo de sapos!</h4>
-                </header>
-                <div class="quiz-result">
-                    <div class="img-result">
-                        <img src="/assets/sapodeterno.jpg" alt="" width="364px" height="273px">
-                    </div>
-
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse, modi dolorum. Deleniti, ex
-                        voluptatum quod, totam natus perspiciatis ab earum cum nemo dicta doloremque officiis ullam,
-                        vel
-                        nihil aperiam atque.
-                    </p>
-                </div>
-            </div>
             <div class="screen two">
 
-                <div class="btn restarquiz">Reiniciar Quizz</div>
-                <div class="btn backhome" onclick="changeScreen()">Voltar para home</div>
+                <div class="btn restarquiz" onclick="reiniciar()">Reiniciar Quizz</div>
+                <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
 
             </div>
         </div>
     </main>
-
-    <footer>
-
-    </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="index.js"></script>
 
