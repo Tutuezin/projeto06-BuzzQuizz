@@ -1,4 +1,4 @@
-const API = 'https://mock-api.driven.com.br/api/v3/buzzquizz/quizzes'
+const API = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes'
 const quizBox = document.querySelector(".boxes-quizz");
 
 let quizzes;
@@ -48,7 +48,13 @@ function verifyId(x ){
         if(x.id == e.id){
             console.log(e.title)
             quizClickada = e;
+            changeScreen();
         }
     })
+}
+
+function changeScreen(){
+    document.querySelector(".one").classList.toggle("hidden");
+    document.querySelector(".two").classList.toggle("hidden");
 }
 getQuizz();
