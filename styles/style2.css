@@ -15,7 +15,10 @@ main {
 .banner,
 .container,
 .choices,
-.top-quiz {
+.top-quiz,
+.quiz-score,
+.btnrestarquiz,
+.btnbackhome {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,9 +42,18 @@ main {
 .banner {
   margin-top: 69px;
   height: 227px;
-  width: 100%;
+}
 
-  background-color: blue;
+.banner img {
+  position: absolute;
+}
+
+.banner h2 {
+  position: relative;
+  font-size: 39px;
+  font-weight: 400;
+
+  color: #ffffff;
 }
 
 .container {
@@ -50,13 +62,14 @@ main {
 }
 
 .top-quiz {
-  height: 130px;
+  height: 137px;
   margin-bottom: 20px;
 
   background-color: #434ca0;
 }
 
-.top-quiz h4 {
+.top-quiz,
+.quiz-score h4 {
   font-size: 23px;
   font-weight: 700;
   color: #ffffff;
@@ -76,6 +89,11 @@ main {
   justify-content: space-between;
 }
 
+.choices img,
+p {
+  cursor: pointer;
+}
+
 .choices p {
   margin-top: 10px;
   margin-bottom: 20px;
@@ -83,4 +101,55 @@ main {
   font-size: 20px;
   font-weight: 700;
   color: #000000;
+}
+
+.bot-quiz {
+  width: 760px;
+  height: 430px;
+  padding: 25px 34px;
+  margin-bottom: 42px;
+
+  background-color: #ffffff;
+}
+
+.quiz-score {
+  height: 99px;
+  margin-bottom: 20px;
+
+  background-color: #ec362d;
+}
+
+.quiz-result {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.img-result {
+  margin-right: 21px;
+}
+
+.btnrestarquiz {
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 21px;
+
+  height: 52px;
+  width: 260px;
+  border-radius: 15px;
+
+  color: #fff5f4;
+  background-color: #ec362d;
+}
+
+.btnbackhome {
+  cursor: pointer;
+  height: 44px;
+  width: 219px;
+  margin-bottom: 40px;
+
+  font-size: 21px;
+  color: #818181;
 }
