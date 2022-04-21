@@ -3,6 +3,7 @@ const quizBox = document.querySelector(".boxes-quizz");
 
 let quizzes;
 let boxquiz;
+let quizClickada;
 
 function getQuizz(){
     axios.get(API)
@@ -12,6 +13,8 @@ function getQuizz(){
          })
 }
 
+
+// Function renderiza as quizz
 function writeQuizz(){
     quizBox.innerHTML = ''
     quizzes.forEach(element => {
@@ -24,15 +27,26 @@ function writeQuizz(){
     
 }
 
+// Function devolver id do quizz clicado
 
 function getOneQuiz(){
     boxquiz = document.querySelectorAll(".box-quiz");
     boxquiz.forEach(e=>{
     e.addEventListener('click', function(){
         console.log(e.id);
+        verifyId(e)
     });
     
 })
 }
 
+
+function verifyId(x ){
+    quizzes.forEach(e=>{
+        if(x.id == e.id){
+            console.log(e.title)
+            quizClickada = e;
+        }
+    })
+}
 getQuizz();
