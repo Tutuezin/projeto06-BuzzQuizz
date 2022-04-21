@@ -143,6 +143,8 @@ p {
 
   color: #fff5f4;
   background-color: #ec362d;
+
+  user-select: none;
 }
 
 .btnbackhome {
@@ -153,6 +155,8 @@ p {
 
   font-size: 21px;
   color: #818181;
+
+  user-select: none;
 }
 
 /* .sombra {
