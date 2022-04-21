@@ -52,11 +52,28 @@ function verifyId(x) {
 }
 getQuizz();
 
+function verifyId(x) {
+  quizzes.forEach((e) => {
+    if (x.id == e.id) {
+      console.log(e.title);
+      quizClickada = e;
+      changeScreen(e);
+    }
+  });
+}
+
+function changeScreen(e) {
+  console.log(e);
+  document.querySelector(".one").classList.toggle("hidden");
+  document.querySelector(".two").classList.toggle("hidden");
+}
+getQuizz();
+
 function openQuiz() {
   const banner = document.querySelector("#banner");
   const bannerTitle = document.querySelector("#bannerTitle");
 
-  axios.get(`${API}/213`).then((a) => {
+  axios.get(`${API}/2`).then((a) => {
     quizId = a.data;
     banner.src = quizId.image;
     bannerTitle.innerHTML = quizId.title;
@@ -64,9 +81,3 @@ function openQuiz() {
   });
 }
 openQuiz();
-
-function changeScreen() {
-  document.querySelector(".one").classList.toggle("hidden");
-  document.querySelector(".two").classList.toggle("hidden");
-}
-getQuizz();
