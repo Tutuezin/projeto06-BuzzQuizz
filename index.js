@@ -48,12 +48,13 @@ function verifyId(x ){
         if(x.id == e.id){
             console.log(e.title)
             quizClickada = e;
-            changeScreen();
+            changeScreen(e);
         }
     })
 }
 
-function changeScreen(){
+function changeScreen(e){
+    console.log(e)
     document.querySelector(".one").classList.toggle("hidden");
     document.querySelector(".two").classList.toggle("hidden");
 }
