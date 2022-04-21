@@ -46,6 +46,7 @@ function verifyId(x) {
     if (x.id == e.id) {
       console.log(e.title);
       quizClickada = e;
+      openQuiz();
     }
   });
 }
@@ -62,5 +63,10 @@ function openQuiz() {
     console.log(quizId);
   });
 }
-
 openQuiz();
+
+function changeScreen() {
+  document.querySelector(".one").classList.toggle("hidden");
+  document.querySelector(".two").classList.toggle("hidden");
+}
+getQuizz();
