@@ -168,6 +168,8 @@ main {
   font-size: 23px;
   font-weight: 700;
   color: #ffffff;
+  padding: 20px;
+  text-align: center;
 }
 
 .quiz {
@@ -185,8 +187,7 @@ main {
   justify-content: space-between;
 }
 
-.choices img,
-p {
+.choice-info {
   cursor: pointer;
 }
 
@@ -206,7 +207,7 @@ p {
   height: 430px;
   padding: 25px 34px;
   margin-top: 42px;
-
+  word-break: break-word;
   background-color: #ffffff;
 }
 
@@ -263,17 +264,16 @@ p {
   display: none;
 }
 
-.not{
+.not {
   opacity: 60%;
-  pointer-events: none;
 }
 
-.true p{
-  color:rgba(0, 156, 34, 1);
+.true p {
+  color: rgba(0, 156, 34, 1);
   transition: color 0.5s;
 }
 
-.false p{
+.false p {
   color: rgba(255, 75, 75, 1);
   transition: color 0.5s;
 }

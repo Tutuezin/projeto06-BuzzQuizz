@@ -1,12 +1,13 @@
-const API = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
+const API = "https://mock-api.driven.com.br/api/v3/buzzquizz/quizzes";
 const quizBox = document.querySelector(".boxes-quizz");
+const questions = document.querySelector(".container");
 
 let quizzes;
 let boxquiz;
 let quizClickada;
 let allQuest = document.querySelectorAll(".choices");
-
 let quizId;
+let score = 0;
 
 function getQuizz() {
   axios.get(API).then((e) => {
@@ -74,7 +75,6 @@ function openQuiz() {
 
 function writeQuestions() {
   topFunction();
-  const questions = document.querySelector(".container");
 
   for (let i = 0; i < quizClickada.questions.length; i++) {
     questions.innerHTML += ` <div class="quiz">
@@ -95,7 +95,7 @@ function writeQuestions() {
                             `;
     }
   }
-  choiceEvent()
+  choiceEvent();
 }
 
 function comparador() {
@@ -103,7 +103,8 @@ function comparador() {
 }
 
 function reiniciar() {
-  document.querySelector(".container").innerHTML = "";
+  score = 0;
+  questions.innerHTML = "";
   writeQuestions();
   topFunction();
 }
@@ -116,37 +117,57 @@ function topFunction() {
 
 function choiceEvent() {
   const escolha = document.querySelectorAll(".choice-info");
-  escolha.forEach(e=>{
-    e.addEventListener('click', ()=>{
+  escolha.forEach((e) => {
+    e.addEventListener("click", () => {
       const questao = e.parentElement; // Pega o elemento pai da opção escolhida
-          const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
-          questoes.forEach(a=>{
-            a.parentElement.classList.remove("black");
-            
-            if(a == e){
-              nextChoice(questao);
-              console.log("são iguais")
-            }else{
-              a.classList.add("not")
-            }
-          });
-    })
-  })
+      const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
+      questoes.forEach((a) => {
+        a.parentElement.classList.remove("black");
+        a.parentElement.setAttribute("style", "pointer-events: none;");
+        nextChoice(questao);
+
+        if (a == e) {
+          if (e.classList.contains("true")) {
+            score++;
+          }
+        } else {
+          a.classList.add("not");
+        }
+        if (e.parentElement.parentElement == questions.lastElementChild) {
+          writeScore();
+        }
+      });
+    });
+  });
 }
 
-function nextChoice(x){
+function nextChoice(x) {
   allQuest = document.querySelectorAll(".choices");
-  for(let i = 0; i<allQuest.length; i++){
-    if(x == allQuest[i] && allQuest[i] !== allQuest[allQuest.length-1]){
-      setTimeout(()=>{
-        allQuest[i+1].parentElement.scrollIntoView({ behavior: 'smooth' });
-      },2000)
-      
-    }if(x == allQuest[i] && allQuest[i] == allQuest[allQuest.length - 1]){
-      console.log("ultima pergunta");
-      writeScore();
+  for (let i = 0; i < allQuest.length; i++) {
+    if (x == allQuest[i] && allQuest[i] !== allQuest[allQuest.length - 1]) {
+      setTimeout(() => {
+        allQuest[i + 1].parentElement.scrollIntoView({ behavior: "smooth" });
+      }, 1000);
     }
   }
-  
 }
 
+function writeScore() {
+  let resposta = ((score * 100) / quizClickada.questions.length).toFixed(0);
+  console.log(resposta);
+  questions.innerHTML += `<div class="bot-quiz">
+                          <header class="quiz-score">
+                         <h4>100% de acerto: ${quizClickada.levels[0].title}</h4>
+                          </header>
+                     <div class="quiz-result">
+                        <div class="img-result">
+                            <img src="${quizClickada.levels[0].image}" alt="" width="364px" height="273px">
+                        </div>
+
+                        <p>
+                        ${quizClickada.levels[0].text}
+                        </p>
+                    </div>
+                </div>`;
+  score = 0;
+}
