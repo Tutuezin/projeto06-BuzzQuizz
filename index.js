@@ -131,6 +131,7 @@ function choiceEvent() {
 
 function effectChoice(x) {
   const questao = x.parentElement; // Pega o elemento pai da opção escolhida
+  questao.style.pointerEvents = "none";
   const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
   if (x.classList.contains("true")) {
     score++;
