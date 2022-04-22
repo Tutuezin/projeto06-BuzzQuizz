@@ -4,6 +4,7 @@ const quizBox = document.querySelector(".boxes-quizz");
 let quizzes;
 let boxquiz;
 let quizClickada;
+let allQuest = document.querySelectorAll(".choices");
 
 let quizId;
 
@@ -121,8 +122,9 @@ function choiceEvent() {
           const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
           questoes.forEach(a=>{
             a.parentElement.classList.remove("black");
-            nextChoice(questao);
+            
             if(a == e){
+              nextChoice(questao);
               console.log("são iguais")
             }else{
               a.classList.add("not")
@@ -133,14 +135,18 @@ function choiceEvent() {
 }
 
 function nextChoice(x){
-  const allQuest = document.querySelectorAll(".choices");
+  allQuest = document.querySelectorAll(".choices");
   for(let i = 0; i<allQuest.length; i++){
     if(x == allQuest[i] && allQuest[i] !== allQuest[allQuest.length-1]){
       setTimeout(()=>{
         allQuest[i+1].parentElement.scrollIntoView({ behavior: 'smooth' });
       },2000)
       
+    }if(x == allQuest[i] && allQuest[i] == allQuest[allQuest.length - 1]){
+      console.log("ultima pergunta");
+      writeScore();
     }
   }
   
 }
+
