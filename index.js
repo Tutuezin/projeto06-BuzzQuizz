@@ -80,20 +80,21 @@ function writeQuestions() {
                                 <header class="top-quiz" style="background-color: ${quizClickada.questions[i].color}">
                                     <h4>${quizClickada.questions[i].title}</h4>
                                 </header>
-                             <div class="choices">
+                             <div class="choices black">
                              </div>
                              </div>
                             `;
     let a = quizClickada.questions[i].answers.sort(comparador);
     for (let j = 0; j < quizClickada.questions[i].answers.length; j++) {
       let choice = document.querySelectorAll(".choices");
-      choice[i].innerHTML += `<div class="choice-info quest${i}">
+      choice[i].innerHTML += `<div class="choice-info ${a[j].isCorrectAnswer}" >
                                 <img src="${a[j].image}" alt="img" width="329px" height="175px">
                                 <p>${a[j].text}</p>
                             </div>
                             `;
     }
   }
+  choiceEvent()
 }
 
 function comparador() {
@@ -112,4 +113,34 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-function choiceEvent() {}
+function choiceEvent() {
+  const escolha = document.querySelectorAll(".choice-info");
+  escolha.forEach(e=>{
+    e.addEventListener('click', ()=>{
+      const questao = e.parentElement; // Pega o elemento pai da opção escolhida
+          const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
+          questoes.forEach(a=>{
+            a.parentElement.classList.remove("black");
+            nextChoice(questao);
+            if(a == e){
+              console.log("são iguais")
+            }else{
+              a.classList.add("not")
+            }
+          });
+    })
+  })
+}
+
+function nextChoice(x){
+  const allQuest = document.querySelectorAll(".choices");
+  for(let i = 0; i<allQuest.length; i++){
+    if(x == allQuest[i] && allQuest[i] !== allQuest[allQuest.length-1]){
+      setTimeout(()=>{
+        allQuest[i+1].parentElement.scrollIntoView({ behavior: 'smooth' });
+      },2000)
+      
+    }
+  }
+  
+}

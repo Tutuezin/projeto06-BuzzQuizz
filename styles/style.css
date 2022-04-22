@@ -133,12 +133,14 @@ main {
   margin-top: 69px;
   height: 227px;
   width: 100%;
+  background-color: black;
 }
 
 .banner img {
   position: absolute;
   width: 100%;
   object-fit: cover;
+  opacity: 40%;
 }
 
 .banner h2 {
@@ -259,4 +261,23 @@ p {
 
 .hidden {
   display: none;
+}
+
+.not{
+  opacity: 60%;
+  pointer-events: none;
+}
+
+.true p{
+  color:rgba(0, 156, 34, 1);
+  transition: color 0.5s;
+}
+
+.false p{
+  color: rgba(255, 75, 75, 1);
+  transition: color 0.5s;
+}
+
+.black > .choice-info > p {
+  color: #000000;
 }
