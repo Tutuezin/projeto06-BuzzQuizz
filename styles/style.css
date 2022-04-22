@@ -224,10 +224,14 @@ main {
 
   font-size: 19px;
   font-weight: 700;
+  color: #484848;
+
+line-height: 25px;
 }
 
 .img-result {
   margin-right: 21px;
+
 }
 
 .btn.restarquiz {
