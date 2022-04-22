@@ -156,18 +156,17 @@ function writeScore() {
   let resposta = ((score * 100) / quizClickada.questions.length).toFixed(0);
   console.log(resposta);
   questions.innerHTML += `<div class="bot-quiz">
-                          <header class="quiz-score">
-                         <h4>100% de acerto: ${quizClickada.levels[0].title}</h4>
-                          </header>
-                     <div class="quiz-result">
-                        <div class="img-result">
+                             <header class="quiz-score">
+                              <h4>100% de acerto: ${quizClickada.levels[0].title}</h4>
+                             </header>
+                          <div class="quiz-result">
+                          <div class="img-result">
                             <img src="${quizClickada.levels[0].image}" alt="" width="364px" height="273px">
+                         </div>
+                             <p>
+                             ${quizClickada.levels[0].text}
+                             </p>
                         </div>
-
-                        <p>
-                        ${quizClickada.levels[0].text}
-                        </p>
-                    </div>
-                </div>`;
+                    </div>`;
   score = 0;
 }
