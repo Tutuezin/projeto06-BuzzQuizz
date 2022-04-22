@@ -1,4 +1,4 @@
-const API = "https://mock-api.driven.com.br/api/v3/buzzquizz/quizzes";
+const API = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 const quizBox = document.querySelector(".boxes-quizz");
 const questions = document.querySelector(".container");
 
@@ -119,26 +119,30 @@ function choiceEvent() {
   const escolha = document.querySelectorAll(".choice-info");
   escolha.forEach((e) => {
     e.addEventListener("click", () => {
-      const questao = e.parentElement; // Pega o elemento pai da opção escolhida
-      const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
-      questoes.forEach((a) => {
-        a.parentElement.classList.remove("black");
-        a.parentElement.setAttribute("style", "pointer-events: none;");
-        nextChoice(questao);
-
-        if (a == e) {
-          if (e.classList.contains("true")) {
-            score++;
-          }
-        } else {
-          a.classList.add("not");
-        }
-        if (e.parentElement.parentElement == questions.lastElementChild) {
+        effectChoice(e);
+        e.parentElement.classList.remove("black");
+        if (!document.querySelector(".black")) {
+          console.log("testeas");
           writeScore();
         }
+        
+          
+          
       });
-    });
   });
+}
+
+function effectChoice(x){
+  const questao = x.parentElement; // Pega o elemento pai da opção escolhida
+  const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
+      if (x.classList.contains("true")) {
+        score++;
+      }for(let i=0; i<questoes.length; i++){
+        if(x !== questoes[i]){
+          questoes[i].classList.add("not");
+        }
+      }
+      nextChoice(questao);
 }
 
 function nextChoice(x) {
@@ -157,7 +161,7 @@ function writeScore() {
   console.log(resposta);
   questions.innerHTML += `<div class="bot-quiz">
                           <header class="quiz-score">
-                         <h4>100% de acerto: ${quizClickada.levels[0].title}</h4>
+                         <h4>${resposta}% de acerto: ${quizClickada.levels[0].title}</h4>
                           </header>
                      <div class="quiz-result">
                         <div class="img-result">
@@ -168,6 +172,6 @@ function writeScore() {
                         ${quizClickada.levels[0].text}
                         </p>
                     </div>
-                </div>`;
-  score = 0;
+                </div>`; 
+
 }
