@@ -73,6 +73,7 @@ main {
   opacity: 1;
   width: 100%;
   border-radius: 5px;
+  object-fit: cover;
 }
 .box-quiz span {
   position: absolute;
@@ -84,6 +85,7 @@ main {
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 17px;
 }
 .btncreatequizz {
   margin-bottom: 33px;
@@ -284,4 +286,31 @@ line-height: 25px;
 
 .black > .choice-info > p {
   color: #000000;
+}
+img{
+  object-fit: cover;
+}
+@media (max-width:1150px) {
+  .screen.one{
+    width: 100%;
+  }
+  .allQuizz{
+    width: 90%;
+  }
+  .boxes-quizz{
+    flex-direction: column;
+  }
+  .createQuizz{
+    width: 90%;
+  }
+  .box-quiz{
+    width: 100%;
+  }
+  .quiz{
+    width: 100%;
+  }.choice-info{
+    width: 45%;
+  }.bot-quiz{
+    width: 100%;
+  }
 }

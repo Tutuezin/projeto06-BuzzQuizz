@@ -89,7 +89,7 @@ function writeQuestions() {
     for (let j = 0; j < quizClickada.questions[i].answers.length; j++) {
       let choice = document.querySelectorAll(".choices");
       choice[i].innerHTML += `<div class="choice-info ${a[j].isCorrectAnswer}" >
-                                <img src="${a[j].image}" alt="img" width="329px" height="175px">
+                                <img src="${a[j].image}" alt="img" width="100%" height="175px">
                                 <p>${a[j].text}</p>
                             </div>
                             `;
@@ -180,4 +180,21 @@ function writeScore() {
                     </div>
                 </div>`;
 
+}
+
+
+function local(){
+  let guarda = JSON.stringify(quizClickada);
+
+  window.localStorage.setItem("quiz", guarda);
+
+}
+
+function writeLocal(){
+  
+    let novo = JSON.parse(localStorage.getItem("quiz"));
+
+    quizClickada = novo;
+
+    writeQuestions();
 }
