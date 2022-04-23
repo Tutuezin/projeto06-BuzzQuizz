@@ -177,7 +177,7 @@ main {
 .quiz {
   width: 760px;
   height: 650px;
-  padding: 25px 34px;
+  padding: 25px;
   margin-top: 42px;
 
   background-color: #ffffff;
@@ -191,6 +191,7 @@ main {
 
 .choice-info {
   cursor: pointer;
+  overflow-x: hidden;
 }
 
 .choices p {
@@ -309,7 +310,7 @@ img{
   .quiz{
     width: 100%;
   }.choice-info{
-    width: 45%;
+    width: 48%;
   }.bot-quiz{
     width: 100%;
   }
