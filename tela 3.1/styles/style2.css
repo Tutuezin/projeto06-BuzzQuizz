@@ -10,6 +10,7 @@ main,
 form,
 .top-side,
 .create-quiz,
+.create-question,
 .inputs,
 .next {
   display: flex;
@@ -17,6 +18,8 @@ form,
   align-items: center;
   flex-direction: column;
 }
+
+/* TELA 3.1 */
 
 .top-side {
   width: 100%;
@@ -30,7 +33,8 @@ form,
   color: #ffffff;
 }
 
-.create-quiz {
+.create-quiz,
+.create-question {
   align-items: center;
   margin-top: 71px;
 }
@@ -83,3 +87,44 @@ form,
 .hidden {
   display: none;
 }
+
+/* TELA 3.2 */
+
+.question,
+.corret-answer,
+.incorret-answer {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-question h2 {
+  font-weight: 700;
+  font-size: 23px;
+
+  margin-bottom: 36px;
+}
+
+.create-question .inputs {
+  padding: 0 24px 24px 24px;
+  align-items: initial;
+
+  background-color: #e08686;
+  box-shadow: 0px 0px 10px 0px #0000000d;
+}
+
+.create-question form h3 {
+  font-size: 20;
+  margin-bottom: 14px;
+  margin-top: 28px;
+}
+
+.incorret-answer .margin {
+  margin-bottom: 32px;
+}
+
+.create-question .inputs.open {
+  margin-bottom: 24px;
+}
+
+/* .create-question .inputs.closed {
+} */

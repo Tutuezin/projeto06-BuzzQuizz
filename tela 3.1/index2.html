@@ -21,8 +21,9 @@
     </header>
 
     <main>
-        <div class="create-quiz one">
+        <div class="create-quiz hidden">
             <h2>Comece pelo começo</h2>
+
             <form id="quiz-info">
                 <div class="inputs">
                     <input type="text" id="quiz-title" required placeholder="Título do seu quizz">
@@ -34,9 +35,47 @@
             </form>
         </div>
 
-        <div class="create-question two hidden">
+        <div class="create-question ">
+            <h2>Crie suas perguntas</h2>
 
-            <h1>TESTE</h1>
+            <form id="questions-info">
+                <div class="inputs open">
+                    <div class="question">
+                        <h3>Pergunta 1</h3>
+
+                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+                    </div>
+
+                    <div class="corret-answer">
+                        <h3>Resposta correta</h3>
+
+                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta correta">
+                        <input type="text" id="quiz-corret-url" required placeholder="URL da imagem">
+                    </div>
+
+                    <div class="incorret-answer">
+                        <h3>Respostas incorretas</h3>
+
+                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta incorreta 1">
+                        <input class="margin" type="text" id="quiz-corret-url" required placeholder="URL da imagem 1">
+
+                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta incorreta 2">
+                        <input class="margin" type="text" id="quiz-corret-url" required placeholder="URL da imagem 2">
+
+                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta incorreta 3">
+                        <input type="text" id="quiz-corret-url" required placeholder="URL da imagem 3">
+                    </div>
+                </div>
+
+                <div class="inputs closed">
+                    <h3>Pergunta 2</h3>
+
+                </div>
+
+            </form>
+
+
         </div>
 
 
