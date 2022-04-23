@@ -179,7 +179,6 @@ function writeScore() {
                         </p>
                     </div>
                 </div>`;
-
 }
 
 
