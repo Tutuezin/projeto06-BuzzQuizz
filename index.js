@@ -1,4 +1,4 @@
-const API = "https://mock-api.driven.com.br/api/v3/buzzquizz/quizzes";
+const API = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
 const quizBox = document.querySelector(".boxes-quizz");
 const questions = document.querySelector(".container");
 
@@ -119,26 +119,29 @@ function choiceEvent() {
   const escolha = document.querySelectorAll(".choice-info");
   escolha.forEach((e) => {
     e.addEventListener("click", () => {
-      const questao = e.parentElement; // Pega o elemento pai da opção escolhida
-      const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
-      questoes.forEach((a) => {
-        a.parentElement.classList.remove("black");
-        a.parentElement.setAttribute("style", "pointer-events: none;");
-        nextChoice(questao);
-
-        if (a == e) {
-          if (e.classList.contains("true")) {
-            score++;
-          }
-        } else {
-          a.classList.add("not");
-        }
-        if (e.parentElement.parentElement == questions.lastElementChild) {
-          writeScore();
-        }
-      });
+      effectChoice(e);
+      e.parentElement.classList.remove("black");
+      if (!document.querySelector(".black")) {
+        console.log("testeas");
+        writeScore();
+      }
     });
   });
+}
+
+function effectChoice(x) {
+  const questao = x.parentElement; // Pega o elemento pai da opção escolhida
+  questao.style.pointerEvents = "none";
+  const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
+  if (x.classList.contains("true")) {
+    score++;
+  }
+  for (let i = 0; i < questoes.length; i++) {
+    if (x !== questoes[i]) {
+      questoes[i].classList.add("not");
+    }
+  }
+  nextChoice(questao);
 }
 
 function nextChoice(x) {
@@ -154,19 +157,27 @@ function nextChoice(x) {
 
 function writeScore() {
   let resposta = ((score * 100) / quizClickada.questions.length).toFixed(0);
-  console.log(resposta);
+  let texto;
+  let teste = 100 / quizClickada.levels.length;
+  for (let i = 0; i < teste; i++) {
+    if (resposta > teste) {
+      texto = quizClickada.levels[1];
+    } else {
+      texto = quizClickada.levels[0];
+    }
+  }
   questions.innerHTML += `<div class="bot-quiz">
-                             <header class="quiz-score">
-                              <h4>100% de acerto: ${quizClickada.levels[0].title}</h4>
-                             </header>
-                          <div class="quiz-result">
-                          <div class="img-result">
-                            <img src="${quizClickada.levels[0].image}" alt="" width="364px" height="273px">
-                         </div>
-                             <p>
-                             ${quizClickada.levels[0].text}
-                             </p>
+                          <header class="quiz-score">
+                         <h4>${resposta}% de acerto: ${texto.title}</h4>
+                          </header>
+                     <div class="quiz-result">
+                        <div class="img-result">
+                            <img src="${texto.image}" alt="" width="364px" height="273px">
                         </div>
-                    </div>`;
-  score = 0;
+
+                        <p>
+                        ${texto.text}
+                        </p>
+                    </div>
+                </div>`;
 }
