@@ -173,12 +173,15 @@ function writeScore() {
                         <div class="img-result">
                             <img src="${texto.image}" alt="" width="364px" height="273px">
                         </div>
-
                         <p>
                         ${texto.text}
                         </p>
                     </div>
                 </div>`;
+                setTimeout(()=>{
+                  document.querySelector(".quiz-score").scrollIntoView({ behavior: "smooth" });
+                }, 1500)
+                
 }
 
 
@@ -187,13 +190,7 @@ function local(){
 
   window.localStorage.setItem("quiz", guarda);
 
-}
+  let novo = JSON.parse(localStorage.getItem("quiz"));
 
-function writeLocal(){
-  
-    let novo = JSON.parse(localStorage.getItem("quiz"));
 
-    quizClickada = novo;
-
-    writeQuestions();
 }
