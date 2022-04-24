@@ -21,7 +21,9 @@
     </header>
 
     <main>
-        <div class="create-quiz hidden">
+
+        <!-- TELA 3.1 -->
+        <div class="create-quiz hidden ">
             <h2>Comece pelo começo</h2>
 
             <form id="quiz-info">
@@ -31,10 +33,12 @@
                     <input type="text" id="quiz-questions" required placeholder="Quantidade de perguntas do quizz">
                     <input type="text" id="quiz-levels" required placeholder="Quantidade de níveis do quizz">
                 </div>
-                <button type="submit" class=" next">Prosseguir pra criar perguntas</button>
+                <button type="submit" class="next-questions">Prosseguir pra criar perguntas</button>
             </form>
         </div>
 
+
+        <!-- TELA 3.2 -->
         <div class="create-question ">
             <h2>Crie suas perguntas</h2>
 
@@ -57,26 +61,77 @@
                     <div class="incorret-answer">
                         <h3>Respostas incorretas</h3>
 
-                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta incorreta 1">
-                        <input class="margin" type="text" id="quiz-corret-url" required placeholder="URL da imagem 1">
+                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
+                        <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
 
-                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta incorreta 2">
-                        <input class="margin" type="text" id="quiz-corret-url" required placeholder="URL da imagem 2">
+                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 2">
+                        <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 2">
 
-                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta incorreta 3">
-                        <input type="text" id="quiz-corret-url" required placeholder="URL da imagem 3">
+                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 3">
+                        <input type="text" id="quiz-incorret-url" required placeholder="URL da imagem 3">
                     </div>
                 </div>
 
                 <div class="inputs closed">
-                    <h3>Pergunta 2</h3>
-
+                    <div class="edit-question">
+                        <h3>Pergunta 2</h3>
+                        <button>
+                            <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
+                        </button>
+                    </div>
                 </div>
 
+                <div class="inputs closed">
+                    <div class="edit-question">
+                        <h3>Pergunta 3</h3>
+                        <button>
+                            <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="next-levels">Prosseguir pra criar níveis</button>
             </form>
-
-
         </div>
+
+        <!-- TELA 3.3 -->
+
+        <div class="create-level hidden">
+            <h2>Agora, decida os níveis</h2>
+
+            <form id="levels-info">
+                <div class="inputs open">
+                    <div class="question">
+                        <h3>Pergunta 1</h3>
+
+                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+                    </div>
+                </div>
+                <div class="inputs closed">
+                    <div class="edit-level">
+                        <h3>Nível 2</h3>
+                        <button>
+                            <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="inputs closed">
+                    <div class="edit-level">
+                        <h3>Nível 3</h3>
+                        <button>
+                            <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- TELA 3.4 -->
+
+
+
 
 
 

@@ -11,6 +11,7 @@ form,
 .top-side,
 .create-quiz,
 .create-question,
+.create-level,
 .inputs,
 .next {
   display: flex;
@@ -19,8 +20,7 @@ form,
   flex-direction: column;
 }
 
-/* TELA 3.1 */
-
+/* TOPO */
 .top-side {
   width: 100%;
   height: 69px;
@@ -33,26 +33,7 @@ form,
   color: #ffffff;
 }
 
-.create-quiz,
-.create-question {
-  align-items: center;
-  margin-top: 71px;
-}
-
-.create-quiz h2 {
-  font-weight: 700;
-  font-size: 23px;
-
-  margin-bottom: 27px;
-}
-
-.inputs {
-  padding: 24px;
-
-  background-color: #ffffff;
-  box-shadow: 0px 0px 10px 0px #0000000d;
-}
-
+/* INPUTS */
 .inputs input {
   padding: 0px 20px;
   width: 564px;
@@ -70,7 +51,32 @@ form,
   color: #bababa;
 }
 
-.next {
+/* TELA 3.1 */
+
+.create-quiz,
+.create-question,
+.create-level {
+  align-items: center;
+  margin-top: 71px;
+}
+
+.create-quiz h2 {
+  font-weight: 700;
+  font-size: 23px;
+
+  margin-bottom: 27px;
+}
+
+.create-quiz .inputs {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px 0px #0000000d;
+}
+
+.next-questions {
   cursor: pointer;
   width: 370px;
   height: 54px;
@@ -78,6 +84,7 @@ form,
   border-radius: 15px;
 
   font-size: 21px;
+  font-weight: 400;
 
   border: none;
   color: #fff5f4;
@@ -108,12 +115,17 @@ form,
   padding: 0 24px 24px 24px;
   align-items: initial;
 
-  background-color: #e08686;
+  background-color: #ffffff;
   box-shadow: 0px 0px 10px 0px #0000000d;
 }
 
-.create-question form h3 {
-  font-size: 20;
+/* input aberto */
+.inputs.open {
+  margin-bottom: 24px;
+}
+.inputs.open h3 {
+  font-size: 20px;
+  font-weight: 700;
   margin-bottom: 14px;
   margin-top: 28px;
 }
@@ -122,9 +134,84 @@ form,
   margin-bottom: 32px;
 }
 
-.create-question .inputs.open {
-  margin-bottom: 24px;
+/* input fechado */
+.create-question .inputs.closed {
+  width: 612px;
+  height: 74px;
+  padding: 0 24px;
+  margin-bottom: 22px;
+  box-shadow: 0px 0px 10px 0px #0000000d;
 }
 
-/* .create-question .inputs.closed {
-} */
+.inputs.closed .edit-question {
+  display: flex;
+  flex-direction: initial;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputs.closed h3 {
+  font-size: 20px;
+}
+
+.edit-question button {
+  cursor: pointer;
+  border: none;
+  background-color: #ffffff;
+}
+
+.next-levels {
+  cursor: pointer;
+  width: 354px;
+  height: 54px;
+  margin: 81px 0;
+
+  border-radius: 15px;
+
+  font-size: 21px;
+  font-weight: 400;
+
+  border: none;
+  color: #fff5f4;
+  background-color: #ec362d;
+}
+
+/* TELA 3.3 */
+
+.create-level h2 {
+  font-weight: 700;
+  font-size: 23px;
+
+  margin-bottom: 36px;
+}
+
+.create-level .inputs {
+  padding: 0 24px 24px 24px;
+  align-items: initial;
+
+  /* margin-bottom: 24px; */
+
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px 0px #0000000d;
+}
+
+.create-level .inputs.closed {
+  width: 612px;
+  height: 74px;
+  padding: 0 24px;
+  margin-bottom: 22px;
+  box-shadow: 0px 0px 10px 0px #0000000d;
+}
+
+.inputs.closed .edit-level {
+  display: flex;
+  flex-direction: initial;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-level button {
+  cursor: pointer;
+  border: none;
+  background-color: #ffffff;
+}

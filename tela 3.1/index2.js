@@ -32,6 +32,8 @@ function quizInfo(event) {
   }
 
   obj = { title, url, qntQuestions, levels };
+  obj["questions"] = ["dsadsad", "sadas", "dsadasd"];
+  obj1;
   console.log(obj);
 }
 
