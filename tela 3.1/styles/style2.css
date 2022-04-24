@@ -12,6 +12,7 @@ form,
 .create-quiz,
 .create-question,
 .create-level,
+.create-finish,
 .inputs,
 .next {
   display: flex;
@@ -55,7 +56,8 @@ form,
 
 .create-quiz,
 .create-question,
-.create-level {
+.create-level,
+.create-finish {
   align-items: center;
   margin-top: 71px;
 }
@@ -247,4 +249,67 @@ form,
   transform: scale(1.01);
   transition: all 100ms ease-out;
   background-color: #962923;
+}
+
+/* TELA 3.4 */
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn.accessquiz {
+  cursor: pointer;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 21px;
+
+  height: 52px;
+  width: 260px;
+  border-radius: 15px;
+
+  color: #fff5f4;
+  background-color: #ec362d;
+}
+
+.btn.backhome {
+  cursor: pointer;
+  height: 44px;
+  width: 219px;
+  margin-bottom: 40px;
+
+  font-size: 21px;
+  color: #818181;
+}
+
+.create-finish h2 {
+  font-weight: 700;
+  font-size: 23px;
+  margin-bottom: 46px;
+}
+
+.finish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  margin-top: 46px;
+  height: 266px;
+  width: 100%;
+}
+
+.finish img {
+  position: absolute;
+}
+
+.finish h3 {
+  display: flex;
+
+  position: relative;
+  font-size: 23px;
+  font-weight: 400;
+  z-index: 1;
+  color: #ffffff;
 }
