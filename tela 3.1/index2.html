@@ -16,14 +16,14 @@
 <body>
     <header>
         <div class="top-side">
-            <h1 style="cursor: pointer;" onclick="window.location.reload()">BuzzQuizz</h1>
+            <h1 style="cursor: pointer;">BuzzQuizz</h1>
         </div>
     </header>
 
     <main>
 
         <!-- TELA 3.1 -->
-        <div class="create-quiz hidden">
+        <div class=" create-quiz ">
             <h2>Comece pelo começo</h2>
 
             <form id="quiz-info">
@@ -89,7 +89,8 @@
                         </button>
                     </div>
                 </div>
-                <button type="submit" onclick="createQuestions()" class="next-levels">Prosseguir pra criar níveis</button>
+                <button type="submit" onclick="createQuestions()" class="next-levels">Prosseguir pra criar
+                    níveis</button>
             </form>
         </div>
 
@@ -131,7 +132,7 @@
 
         <!-- TELA 3.4 -->
 
-        <div class="create-finish">
+        <div class="create-finish hidden">
             <h2>Seu quizz está pronto!</h2>
             <div class="finish">
                 <img src="/assets/sapodeterno.jpg" width="500px" height="266px" alt="">
@@ -139,18 +140,7 @@
             </div>
             <div class="btn accessquiz">Acessar Quizz</div>
             <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
-
-
-
         </div>
-
-
-
-
-
-
-
-
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

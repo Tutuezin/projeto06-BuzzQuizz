@@ -31,7 +31,7 @@ function quizInfo(event) {
     nextScreen(createQuiz, createQuestion);
   }
 
-  obj = { title, url};
+  obj = { title, url };
   //obj["questions"] = ["dsadsad", "sadas", "dsadasd"];
   console.log(obj);
 }
@@ -41,24 +41,29 @@ function nextScreen(x, y) {
   y.classList.remove("hidden");
 }
 
-function createQuestions(){
+function createQuestions() {
   const createQuestion = document.querySelector(".create-question");
-  let text = [], image = [], textin, imagein;
-  let title = document.querySelector("#quiz-question").value
-  let color = document.querySelector("#quiz-color").value
-  text.push(document.querySelector("#quiz-corret-answer").value);
-  image.push(document.querySelector("#quiz-corret-url").value);
+  let text = [],
+    image = [],
+    textin,
+    imagein;
 
-  
-    for(let j = 0; j<3; j++){
+  for (let i = 0; i < 3; i++) {
+    let title = document.querySelectorAll("#quiz-question")[i].value;
+    let color = document.querySelectorAll("#quiz-color")[i].value;
+
+    text.push(document.querySelector("#quiz-corret-answer").value);
+    image.push(document.querySelector("#quiz-corret-url").value);
+
+    for (let j = 0; j < 3; j++) {
       textin = document.querySelectorAll("#quiz-incorret-answer")[j].value;
       imagein = document.querySelectorAll("#quiz-incorret-url")[j].value;
       text.push(textin);
       image.push(imagein);
-      questao = [title:textin, imagein]
     }
-  obj['questions']+= {title, }
+  }
+  obj["questions"] += { title };
 
-  console.log(text)
-  console.log(image)
+  console.log(text);
+  console.log(image);
 }

@@ -42,6 +42,7 @@ main {
   align-items: center;
 }
 
+/* TELA 1 */
 .screen.one {
   width: 1050px;
   flex-direction: column;
@@ -125,7 +126,7 @@ main {
   border-radius: 5px;
   z-index: 1;
 }
-/* JUNÇÂO DOS 2 CSS*/
+/* TELA 2*/
 .banner .sombra {
   height: 227px;
   border-radius: 0;
@@ -248,6 +249,12 @@ main {
 
   color: #fff5f4;
   background-color: #ec362d;
+}
+
+.btn.restartquiz:hover {
+  transform: scale(1.01);
+  transition: all 100ms ease-out;
+  background-color: #962923;
 }
 
 .btn.backhome {
