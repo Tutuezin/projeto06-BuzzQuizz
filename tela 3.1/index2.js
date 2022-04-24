@@ -1,6 +1,6 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 document.querySelector("#quiz-info").addEventListener("submit", quizInfo);
-
+let questions = document.querySelector("#quiz-questions").value;
 let obj;
 
 function quizInfo(event) {
@@ -9,7 +9,7 @@ function quizInfo(event) {
   const createQuestion = document.querySelector(".create-question");
   const title = document.querySelector("#quiz-title").value;
   const url = document.querySelector("#quiz-url").value;
-  const qntQuestions = document.querySelector("#quiz-questions").value;
+  questions = document.querySelector("#quiz-questions").value;
   const levels = document.querySelector("#quiz-levels").value;
 
   console.log(title.length);
@@ -19,9 +19,9 @@ function quizInfo(event) {
     alert("O mínimo permitido são 20 caracteres!");
   } else if (title.length > 65) {
     alert("O máximo permitido são 65 caracteres!");
-  } else if (parseInt(qntQuestions) < 3) {
+  } else if (parseInt(questions) < 3) {
     alert("O mínimo permitido são 3 perguntas!");
-  } else if (isNaN(qntQuestions)) {
+  } else if (isNaN(questions)) {
     alert("Por favor, digite a quantidade de questões em números!");
   } else if (parseInt(levels) < 2) {
     alert("O mínimo permitido são 2 níveis!");
@@ -31,13 +31,34 @@ function quizInfo(event) {
     nextScreen(createQuiz, createQuestion);
   }
 
-  obj = { title, url, qntQuestions, levels };
-  obj["questions"] = ["dsadsad", "sadas", "dsadasd"];
-  obj1;
+  obj = { title, url};
+  //obj["questions"] = ["dsadsad", "sadas", "dsadasd"];
   console.log(obj);
 }
 
 function nextScreen(x, y) {
   x.classList.add("hidden");
   y.classList.remove("hidden");
+}
+
+function createQuestions(){
+  const createQuestion = document.querySelector(".create-question");
+  let text = [], image = [], textin, imagein;
+  let title = document.querySelector("#quiz-question").value
+  let color = document.querySelector("#quiz-color").value
+  text.push(document.querySelector("#quiz-corret-answer").value);
+  image.push(document.querySelector("#quiz-corret-url").value);
+
+  
+    for(let j = 0; j<3; j++){
+      textin = document.querySelectorAll("#quiz-incorret-answer")[j].value;
+      imagein = document.querySelectorAll("#quiz-incorret-url")[j].value;
+      text.push(textin);
+      image.push(imagein);
+      questao = [title:textin, imagein]
+    }
+  obj['questions']+= {title, }
+
+  console.log(text)
+  console.log(image)
 }
