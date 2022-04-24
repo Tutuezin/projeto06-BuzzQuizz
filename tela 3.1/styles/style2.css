@@ -91,6 +91,12 @@ form,
   background-color: #ec362d;
 }
 
+.next-questions:hover {
+  transform: scale(1.01);
+  transition: all 100ms ease-out;
+  background-color: #962923;
+}
+
 .hidden {
   display: none;
 }
@@ -176,6 +182,12 @@ form,
   background-color: #ec362d;
 }
 
+.next-levels:hover {
+  transform: scale(1.01);
+  transition: all 100ms ease-out;
+  background-color: #962923;
+}
+
 /* TELA 3.3 */
 
 .create-level h2 {
@@ -214,4 +226,25 @@ form,
   cursor: pointer;
   border: none;
   background-color: #ffffff;
+}
+
+.finish-quiz {
+  cursor: pointer;
+  width: 325px;
+  height: 54px;
+  margin-top: 75px;
+  border-radius: 15px;
+
+  font-size: 21px;
+  font-weight: 400;
+
+  border: none;
+  color: #fff5f4;
+  background-color: #ec362d;
+}
+
+.finish-quiz:hover {
+  transform: scale(1.01);
+  transition: all 100ms ease-out;
+  background-color: #962923;
 }
