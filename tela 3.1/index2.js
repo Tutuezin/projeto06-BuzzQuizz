@@ -6,7 +6,8 @@ document
   .addEventListener("submit", createLevels);
 
 let questions = parseInt(document.querySelector("#quiz-questions").value);
-let obj;
+let levels = document.querySelector("#quiz-levels").value;
+let obj, quests = [], answer = []
 
 function quizInfo(event) {
   event.preventDefault();
@@ -15,7 +16,7 @@ function quizInfo(event) {
   const title = document.querySelector("#quiz-title").value;
   const url = document.querySelector("#quiz-url").value;
   questions = document.querySelector("#quiz-questions").value;
-  const levels = document.querySelector("#quiz-levels").value;
+  levels = document.querySelector("#quiz-levels").value;
 
   // verifica as informações básicas do quiz
   if (title.length < 20) {
@@ -37,80 +38,103 @@ function quizInfo(event) {
   }
 
   obj = { title, url };
-  //obj["questions"] = ["dsadsad", "sadas", "dsadasd"];
   console.log(obj);
 }
 
-function nextScreen(x, y) {
-  x.classList.add("hidden");
-  y.classList.remove("hidden");
+function nextScreen(criadorQuiz, telaPerguntas) {
+  criadorQuiz.classList.add("hidden");
+  telaPerguntas.classList.remove("hidden");
+
+  for (let i = 1; i < questions; i++) {
+      telaPerguntas.innerHTML += `<div class="inputs closed">
+  <div class="edit-question">
+      <h3>Pergunta ${i+1}</h3>
+      <button onclick="openQuestion()">
+          <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
+      </button>
+  </div>
+</div>`
+  }
+  telaPerguntas.innerHTML += `<button type="submit" onclick="getQuest()" class="next-levels">Prosseguir pra criar níveis</button>`
+
 }
 
-function createQuestions() {
+function getQuest() {
+  let forms = document.querySelectorAll(".inputs.quest");
+  for (let i = 0; i < forms.length; i++) {
+      createQuestions(forms[i]);
+      forms[i].style.backgroundColor = 'red'
+  }
+  obj["questions"] = quests;
+}
+
+
+function getLevels() {
+  let forms = document.querySelectorAll(".inputs.quest");
+  for (let i = 0; i < forms.length; i++) {
+      createQuestions(forms[i]);
+      forms[i].style.backgroundColor = 'red'
+  }
+  answer = [];
+  obj["levels"] = quests;
+}
+
+function createQuestions(pergunta) {
   const createQuestion = document.querySelector(".create-question");
-  let answers = [],
-    objeto = [],
-    textin,
-    imagein;
 
-  let title = document.querySelectorAll("#quiz-question")[i].value;
-  let color = document.querySelectorAll("#quiz-color")[i].value;
 
-  answers.push({
-    text: document.querySelector("#quiz-corret-answer").value,
-    image: document.querySelector("#quiz-corret-url").value,
-    isCorrectAnswer: true,
-  });
+  let title = pergunta.querySelector("#quiz-question").value;
+  let color = pergunta.querySelector("#quiz-color").value;
+
+  answer.push({ text: pergunta.querySelector("#quiz-corret-answer").value, image: pergunta.querySelector("#quiz-corret-url").value, isCorrectAnswer: true });
+
 
   for (let j = 0; j < 3; j++) {
-    textin = document.querySelectorAll("#quiz-incorret-answer")[j].value;
-    imagein = document.querySelectorAll("#quiz-incorret-url")[j].value;
-    answers.push({ text: textin, image: imagein, isCorrectAnswer: false });
+      let textin = pergunta.querySelectorAll("#quiz-incorret-answer")[j].value;
+      let imagein = pergunta.querySelectorAll("#quiz-incorret-url")[j].value;
+      answer.push({ text: textin, image: imagein, isCorrectAnswer: false });
   }
-  objeto.push({ title: title, color: color, answers });
-
-  console.log(objeto);
+  quests.push({ title: title, color: color, answer })
+  answer = [];
 }
 
 /* abrir questões TELA 3.2 */
 function openQuestion() {
   const closedQuestion = document.querySelector(".inputs.closed");
   closedQuestion.classList.remove("closed");
-  closedQuestion.classList.add("open");
-  console.log(closedQuestion);
-  const buttons = document.querySelectorAll(".edit-question button");
+  closedQuestion.classList.add("open", "quest");
   //Pegar qual foi clicada
-  console.log("esse é o evento :" + event);
-  for (let i = 0; i < buttons.length; i++) {}
+  let array = document.querySelectorAll(".inputs.quest").length;
   closedQuestion.innerHTML = `
-  <div class="question">
-                        <h3>Pergunta 1</h3>
+<div class="question">
+                      <h3>Pergunta ${array}</h3>
 
-                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
-                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
-                    </div>
+                      <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+                      <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+                  </div>
 
-                    <div class="corret-answer">
-                        <h3>Resposta correta</h3>
+                  <div class="corret-answer">
+                      <h3>Resposta correta</h3>
 
-                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta correta">
-                        <input type="text" id="quiz-corret-url" required placeholder="URL da imagem">
-                    </div>
+                      <input type="text" id="quiz-corret-answer" required placeholder="Resposta correta">
+                      <input type="text" id="quiz-corret-url" required placeholder="URL da imagem">
+                  </div>
 
-                    <div class="incorret-answer">
-                        <h3>Respostas incorretas</h3>
+                  <div class="incorret-answer">
+                      <h3>Respostas incorretas</h3>
 
-                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
-                        <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
+                      <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
+                      <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
 
-                        <input type="text" id="quiz-incorret-answer"  placeholder="Resposta incorreta 2">
-                        <input class="margin" type="text" id="quiz-incorret-url"  placeholder="URL da imagem 2">
+                      <input type="text" id="quiz-incorret-answer"  placeholder="Resposta incorreta 2">
+                      <input class="margin" type="text" id="quiz-incorret-url"  placeholder="URL da imagem 2">
 
-                        <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 3">
-                        <input type="text" id="quiz-incorret-url"  placeholder="URL da imagem 3">
-                    </div> 
-  `;
+                      <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 3">
+                      <input type="text" id="quiz-incorret-url"  placeholder="URL da imagem 3">
+                  </div> 
+`;
 }
+
 
 /* IR PARA A PAGINA DE NIVEIS TELA 3 */
 function createLevels(event) {
