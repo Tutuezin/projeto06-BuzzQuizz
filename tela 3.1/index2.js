@@ -71,15 +71,6 @@ function getQuest() {
   obj["questions"] = quests;
 }
 
-function getLevels() {
-  let forms = document.querySelectorAll(".inputs.quest");
-  for (let i = 0; i < forms.length; i++) {
-    createQuestions(forms[i]);
-    forms[i].style.backgroundColor = "red";
-  }
-  answer = [];
-  obj["levels"] = quests;
-}
 
 function createQuestions(pergunta) {
   const createQuestion = document.querySelector(".create-question");
@@ -172,15 +163,16 @@ function createLevels(event) {
 }
 
 function openLevel() {
-  const closedLevel = document.querySelector(".inputs.closed");
-  console.log(closedLevel);
-  closedLevel.innerHTML = "";
+  let paiLevel = document.querySelector("#levels-info")
+  const closedLevel = paiLevel.querySelector(".inputs.closed");
+  closedLevel.innerHTML = '';
+
   closedLevel.classList.remove("closed");
   closedLevel.classList.add("open");
-
-  closedLevel.innerHTML = `
+  let quantidade = document.querySelector(".create-level ").querySelectorAll(".inputs").length;
+  closedLevel.innerHTML += `
                     <div class="level">
-                        <h3>Nível 1</h3>
+                        <h3>Nível ${quantidade}</h3>
 
                         <input type="text" id="level-title" required placeholder="Título do nível">
                         <input type="text" id="level-percentage" required placeholder="% de acerto mínima">
@@ -194,7 +186,7 @@ function setLevels(event) {
   event.preventDefault();
   const createLevel = document.querySelector(".create-level");
   const createFinish = document.querySelector(".create-finish");
-  const levelTitle = document.querySelector("#level-title").value;
+  const levelTitle = document.querySelector(".create-level").querySelector("#level-title").value;
   const levelPercentage = parseInt(
     document.querySelector("#level-percentage").value
   );
@@ -214,6 +206,7 @@ function setLevels(event) {
   } else {
     /* createLevel.classList.add("hidden");
     createFinish.classList.remove("hidden"); */
+    writeFinish();
   }
 }
 
