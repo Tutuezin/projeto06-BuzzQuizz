@@ -23,7 +23,7 @@
     <main>
 
         <!-- TELA 3.1 -->
-        <div class=" create-quiz ">
+        <div class=" create-quiz hidden">
             <h2>Comece pelo começo</h2>
 
             <form id="quiz-info">
@@ -39,7 +39,7 @@
 
 
         <!-- TELA 3.2 -->
-        <div class="create-question hidden">
+        <div class="create-question ">
             <h2>Crie suas perguntas</h2>
 
             <form id="questions-info">
@@ -70,6 +70,10 @@
                         <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 3">
                         <input type="text" id="quiz-incorret-url" required placeholder="URL da imagem 3">
                     </div>
+
+
+
+
                 </div>
 
                 <div class="inputs closed">
@@ -89,7 +93,7 @@
                         </button>
                     </div>
                 </div>
-                <button type="submit" onclick="createQuestions()" class="next-levels">Prosseguir pra criar
+                <button onclick="openQuestion()" class="next-levels">Prosseguir pra criar
                     níveis</button>
             </form>
         </div>

@@ -1,6 +1,10 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 document.querySelector("#quiz-info").addEventListener("submit", quizInfo);
-let questions = document.querySelector("#quiz-questions").value;
+document
+  .querySelector("#questions-info")
+  .addEventListener("submit", openQuestion);
+
+let questions = parseInt(document.querySelector("#quiz-questions").value);
 let obj;
 
 function quizInfo(event) {
@@ -11,8 +15,6 @@ function quizInfo(event) {
   const url = document.querySelector("#quiz-url").value;
   questions = document.querySelector("#quiz-questions").value;
   const levels = document.querySelector("#quiz-levels").value;
-
-  console.log(title.length);
 
   // verifica as informações básicas do quiz ### FALTA CHECAR URL ###
   if (title.length < 25) {
@@ -48,7 +50,7 @@ function createQuestions() {
     textin,
     imagein;
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     let title = document.querySelectorAll("#quiz-question")[i].value;
     let color = document.querySelectorAll("#quiz-color")[i].value;
 
@@ -58,12 +60,46 @@ function createQuestions() {
     for (let j = 0; j < 3; j++) {
       textin = document.querySelectorAll("#quiz-incorret-answer")[j].value;
       imagein = document.querySelectorAll("#quiz-incorret-url")[j].value;
-      text.push(textin);
+      text.push({ text: textin, image: imagein });
       image.push(imagein);
     }
+    console.log(text);
   }
-  obj["questions"] += { title };
+}
 
-  console.log(text);
-  console.log(image);
+function openQuestion(event) {
+  event.preventDefault();
+  const closedQuestion = document.querySelector(".inputs.closed");
+  closedQuestion.classList.remove("closed");
+  closedQuestion.classList.add("open");
+  console.log(closedQuestion);
+  closedQuestion.innerHTML = "";
+  closedQuestion.innerHTML = `
+  <div class="question">
+                        <h3>Pergunta 1</h3>
+
+                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+                    </div>
+
+                    <div class="corret-answer">
+                        <h3>Resposta correta</h3>
+
+                        <input type="text" id="quiz-corret-answer" required placeholder="Resposta correta">
+                        <input type="text" id="quiz-corret-url" required placeholder="URL da imagem">
+                    </div>
+
+                    <div class="incorret-answer">
+                        <h3>Respostas incorretas</h3>
+
+                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
+                        <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
+
+                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 2">
+                        <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 2">
+
+                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 3">
+                        <input type="text" id="quiz-incorret-url" required placeholder="URL da imagem 3">
+                    </div> 
+  `;
 }
