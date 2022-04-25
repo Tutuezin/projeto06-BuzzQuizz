@@ -53,21 +53,23 @@ function createQuestions() {
     textin,
     imagein;
 
-  for (let i = 0; i < 3; i++) {
-    let title = document.querySelectorAll("#quiz-question")[i].value;
-    let color = document.querySelectorAll("#quiz-color")[i].value;
+  let title = document.querySelectorAll("#quiz-question")[i].value;
+  let color = document.querySelectorAll("#quiz-color")[i].value;
 
-    answers.push({text:document.querySelector("#quiz-corret-answer").value, image:document.querySelector("#quiz-corret-url").value, isCorrectAnswer:true});
-    
+  answers.push({
+    text: document.querySelector("#quiz-corret-answer").value,
+    image: document.querySelector("#quiz-corret-url").value,
+    isCorrectAnswer: true,
+  });
 
-    for (let j = 0; j < 3; j++) {
-      textin = document.querySelectorAll("#quiz-incorret-answer")[j].value;
-      imagein = document.querySelectorAll("#quiz-incorret-url")[j].value;
-      answers.push({ text: textin, image: imagein , isCorrectAnswer:false});
-    }
-    objeto.push({title: title, color:color, answers})
+  for (let j = 0; j < 3; j++) {
+    textin = document.querySelectorAll("#quiz-incorret-answer")[j].value;
+    imagein = document.querySelectorAll("#quiz-incorret-url")[j].value;
+    answers.push({ text: textin, image: imagein, isCorrectAnswer: false });
   }
-  console.log(objeto)
+  objeto.push({ title: title, color: color, answers });
+
+  console.log(objeto);
 }
 
 /* abrir questões TELA 3.2 */
@@ -125,6 +127,7 @@ function createLevels(event) {
   ).value;
   const quizIncorretUrl = document.querySelector("#quiz-incorret-url").value;
 
+  // verifica as perguntas do quiz
   if (quizQuestion.length < 20) {
     alert("O mínimo permitido nas perguntas são 20 caracteres!");
   } else if (!quizColor.includes("#")) {
