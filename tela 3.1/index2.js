@@ -45,26 +45,26 @@ function nextScreen(x, y) {
 
 function createQuestions() {
   const createQuestion = document.querySelector(".create-question");
-  let text = [],
-    image = [],
+  let answers = [],
+    objeto = [],
     textin,
     imagein;
 
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 3; i++) {
     let title = document.querySelectorAll("#quiz-question")[i].value;
     let color = document.querySelectorAll("#quiz-color")[i].value;
 
-    text.push(document.querySelector("#quiz-corret-answer").value);
-    image.push(document.querySelector("#quiz-corret-url").value);
+    answers.push({text:document.querySelector("#quiz-corret-answer").value, image:document.querySelector("#quiz-corret-url").value, isCorrectAnswer:true});
+    
 
     for (let j = 0; j < 3; j++) {
       textin = document.querySelectorAll("#quiz-incorret-answer")[j].value;
       imagein = document.querySelectorAll("#quiz-incorret-url")[j].value;
-      text.push({ text: textin, image: imagein });
-      image.push(imagein);
+      answers.push({ text: textin, image: imagein , isCorrectAnswer:false});
     }
-    console.log(text);
+    objeto.push({title: title, color:color, answers})
   }
+  console.log(objeto)
 }
 
 function openQuestion(event) {
