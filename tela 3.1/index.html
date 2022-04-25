@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                
+
             </form>
         </div>
 
@@ -83,31 +83,24 @@
 
             <form id="levels-info">
                 <div class="inputs open">
-                    <div class="question">
-                        <h3>Pergunta 1</h3>
+                    <div class="level">
+                        <h3>Nível 1</h3>
 
-                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
-                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
-                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
-                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+                        <input type="text" id="level-title" required placeholder="Título do nível">
+                        <input type="text" id="level-percentage" required placeholder="% de acerto mínima">
+                        <input type="text" id="level-url" required placeholder="URL da imagem do nível">
+                        <input type="text" id="level-description" required placeholder="Descrição do nível">
                     </div>
                 </div>
                 <div class="inputs closed">
                     <div class="edit-level">
                         <h3>Nível 2</h3>
-                        <button>
+                        <button onclick="openLevel()">
                             <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
                         </button>
                     </div>
                 </div>
-                <div class="inputs closed">
-                    <div class="edit-level">
-                        <h3>Nível 3</h3>
-                        <button>
-                            <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
-                        </button>
-                    </div>
-                </div>
+
                 <button type="submit" class="finish-quiz">Finalizar Quizz</button>
             </form>
         </div>
