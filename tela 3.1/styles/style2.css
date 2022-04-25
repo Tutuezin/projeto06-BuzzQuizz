@@ -106,6 +106,7 @@ form,
 /* TELA 3.2 */
 
 .question,
+.level,
 .corret-answer,
 .incorret-answer {
   display: flex;
@@ -268,13 +269,10 @@ form,
   margin-top: 46px;
   height: 266px;
   width: 100%;
-  
 }
 
 .finish img {
   position: relative;
-  
-  
 }
 
 .finish h3 {
