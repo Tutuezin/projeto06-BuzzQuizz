@@ -16,7 +16,7 @@
 <body>
     <header>
         <div class="top-side">
-            <h1 style="cursor: pointer;">BuzzQuizz</h1>
+            <h1 style="cursor: pointer;" onclick="window.location.reload()">BuzzQuizz</h1>
         </div>
     </header>
 
@@ -39,7 +39,7 @@
 
 
         <!-- TELA 3.2 -->
-        <div class="create-question ">
+        <div class="create-question  ">
             <h2>Crie suas perguntas</h2>
 
             <form id="questions-info">
@@ -64,22 +64,18 @@
                         <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
                         <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
 
-                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 2">
-                        <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 2">
+                        <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 2">
+                        <input class="margin" type="text" id="quiz-incorret-url" placeholder="URL da imagem 2">
 
-                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 3">
-                        <input type="text" id="quiz-incorret-url" required placeholder="URL da imagem 3">
+                        <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 3">
+                        <input type="text" id="quiz-incorret-url" placeholder="URL da imagem 3">
                     </div>
-
-
-
-
                 </div>
 
                 <div class="inputs closed">
                     <div class="edit-question">
                         <h3>Pergunta 2</h3>
-                        <button>
+                        <button onclick="openQuestion()">
                             <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
                         </button>
                     </div>
@@ -88,13 +84,12 @@
                 <div class="inputs closed">
                     <div class="edit-question">
                         <h3>Pergunta 3</h3>
-                        <button>
+                        <button onclick="openQuestion()">
                             <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
                         </button>
                     </div>
                 </div>
-                <button onclick="openQuestion()" class="next-levels">Prosseguir pra criar
-                    níveis</button>
+                <button type="submit" class="next-levels">Prosseguir pra criar níveis</button>
             </form>
         </div>
 

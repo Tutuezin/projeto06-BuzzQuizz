@@ -1,8 +1,9 @@
 const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 document.querySelector("#quiz-info").addEventListener("submit", quizInfo);
+
 document
   .querySelector("#questions-info")
-  .addEventListener("submit", openQuestion);
+  .addEventListener("submit", createLevels);
 
 let questions = parseInt(document.querySelector("#quiz-questions").value);
 let obj;
@@ -16,11 +17,13 @@ function quizInfo(event) {
   questions = document.querySelector("#quiz-questions").value;
   const levels = document.querySelector("#quiz-levels").value;
 
-  // verifica as informações básicas do quiz ### FALTA CHECAR URL ###
-  if (title.length < 25) {
+  // verifica as informações básicas do quiz
+  if (title.length < 20) {
     alert("O mínimo permitido são 20 caracteres!");
   } else if (title.length > 65) {
     alert("O máximo permitido são 65 caracteres!");
+  } else if (!url.includes("https://")) {
+    alert("Coloque a imagem em fortmato URL!");
   } else if (parseInt(questions) < 3) {
     alert("O mínimo permitido são 3 perguntas!");
   } else if (isNaN(questions)) {
@@ -67,13 +70,16 @@ function createQuestions() {
   }
 }
 
-function openQuestion(event) {
-  event.preventDefault();
+/* abrir questões TELA 3.2 */
+function openQuestion() {
   const closedQuestion = document.querySelector(".inputs.closed");
   closedQuestion.classList.remove("closed");
   closedQuestion.classList.add("open");
   console.log(closedQuestion);
-  closedQuestion.innerHTML = "";
+  const buttons = document.querySelectorAll(".edit-question button");
+  //Pegar qual foi clicada
+  console.log("esse é o evento :" + event);
+  for (let i = 0; i < buttons.length; i++) {}
   closedQuestion.innerHTML = `
   <div class="question">
                         <h3>Pergunta 1</h3>
@@ -95,11 +101,42 @@ function openQuestion(event) {
                         <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
                         <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
 
-                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 2">
-                        <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 2">
+                        <input type="text" id="quiz-incorret-answer"  placeholder="Resposta incorreta 2">
+                        <input class="margin" type="text" id="quiz-incorret-url"  placeholder="URL da imagem 2">
 
-                        <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 3">
-                        <input type="text" id="quiz-incorret-url" required placeholder="URL da imagem 3">
+                        <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 3">
+                        <input type="text" id="quiz-incorret-url"  placeholder="URL da imagem 3">
                     </div> 
   `;
+}
+
+/* IR PARA A PAGINA DE NIVEIS TELA 3 */
+function createLevels(event) {
+  event.preventDefault();
+  const createQuestion = document.querySelector(".create-question");
+  const createLevel = document.querySelector(".create-level");
+
+  const quizQuestion = document.querySelector("#quiz-question").value;
+  const quizColor = document.querySelector("#quiz-color").value;
+  const quizCorretAnswer = document.querySelector("#quiz-corret-answer").value;
+  const quizCorretUrl = document.querySelector("#quiz-corret-url").value;
+  const quizIncorretAnswer = document.querySelector(
+    "#quiz-incorret-answer"
+  ).value;
+  const quizIncorretUrl = document.querySelector("#quiz-incorret-url").value;
+
+  if (quizQuestion.length < 20) {
+    alert("O mínimo permitido nas perguntas são 20 caracteres!");
+  } else if (!quizColor.includes("#")) {
+    alert("Cores hexadecimais precisam do '#' antes dos caracteres");
+  } else if (quizColor.length > 7) {
+    alert("Cores hexadecimais tem no máximo 6 caracteres depois do '#'!");
+  } else if (!quizCorretUrl.includes("https://")) {
+    alert("Coloque a imagem certa em fortmato URL!");
+  } else if (!quizIncorretUrl.includes("https://")) {
+    alert("Coloque a imagem errada em fortmato URL!");
+  } else {
+    createQuestion.classList.add("hidden");
+    createLevel.classList.remove("hidden");
+  }
 }
