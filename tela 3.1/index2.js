@@ -5,13 +5,9 @@ document
   .querySelector("#questions-info")
   .addEventListener("submit", createLevels);
 
-document.querySelector("#levels-info").addEventListener("submit", setLevels);
-
 let questions = parseInt(document.querySelector("#quiz-questions").value);
 let levels = document.querySelector("#quiz-levels").value;
-let obj,
-  quests = [],
-  answer = [];
+let obj, quests = [], answer = []
 
 function quizInfo(event) {
   event.preventDefault();
@@ -32,7 +28,7 @@ function quizInfo(event) {
   } else if (parseInt(questions) < 3) {
     alert("O mínimo permitido são 3 perguntas!");
   } else if (isNaN(questions)) {
-    alert("Por favor, digite a quantidade de questões em forma númerica!");
+    alert("Por favor, digite a quantidade de questões em números!");
   } else if (parseInt(levels) < 2) {
     alert("O mínimo permitido são 2 níveis!");
   } else if (isNaN(levels)) {
@@ -50,32 +46,34 @@ function nextScreen(criadorQuiz, telaPerguntas) {
   telaPerguntas.classList.remove("hidden");
 
   for (let i = 1; i < questions; i++) {
-    telaPerguntas.innerHTML += `<div class="inputs closed">
+      telaPerguntas.innerHTML += `<div class="inputs closed">
   <div class="edit-question">
-      <h3>Pergunta ${i + 1}</h3>
+      <h3>Pergunta ${i+1}</h3>
       <button onclick="openQuestion()">
           <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
       </button>
   </div>
-</div>`;
+</div>`
   }
-  telaPerguntas.innerHTML += `<button type="submit" onclick="getQuest()" class="next-levels">Prosseguir pra criar níveis</button>`;
+  telaPerguntas.innerHTML += `<button type="submit" onclick="getQuest()" class="next-levels">Prosseguir pra criar níveis</button>`
+
 }
 
 function getQuest() {
   let forms = document.querySelectorAll(".inputs.quest");
   for (let i = 0; i < forms.length; i++) {
-    createQuestions(forms[i]);
-    forms[i].style.backgroundColor = "red";
+      createQuestions(forms[i]);
+      forms[i].style.backgroundColor = 'red'
   }
   obj["questions"] = quests;
 }
 
+
 function getLevels() {
   let forms = document.querySelectorAll(".inputs.quest");
   for (let i = 0; i < forms.length; i++) {
-    createQuestions(forms[i]);
-    forms[i].style.backgroundColor = "red";
+      createQuestions(forms[i]);
+      forms[i].style.backgroundColor = 'red'
   }
   answer = [];
   obj["levels"] = quests;
@@ -84,21 +82,19 @@ function getLevels() {
 function createQuestions(pergunta) {
   const createQuestion = document.querySelector(".create-question");
 
+
   let title = pergunta.querySelector("#quiz-question").value;
   let color = pergunta.querySelector("#quiz-color").value;
 
-  answer.push({
-    text: pergunta.querySelector("#quiz-corret-answer").value,
-    image: pergunta.querySelector("#quiz-corret-url").value,
-    isCorrectAnswer: true,
-  });
+  answer.push({ text: pergunta.querySelector("#quiz-corret-answer").value, image: pergunta.querySelector("#quiz-corret-url").value, isCorrectAnswer: true });
+
 
   for (let j = 0; j < 3; j++) {
-    let textin = pergunta.querySelectorAll("#quiz-incorret-answer")[j].value;
-    let imagein = pergunta.querySelectorAll("#quiz-incorret-url")[j].value;
-    answer.push({ text: textin, image: imagein, isCorrectAnswer: false });
+      let textin = pergunta.querySelectorAll("#quiz-incorret-answer")[j].value;
+      let imagein = pergunta.querySelectorAll("#quiz-incorret-url")[j].value;
+      answer.push({ text: textin, image: imagein, isCorrectAnswer: false });
   }
-  quests.push({ title: title, color: color, answer });
+  quests.push({ title: title, color: color, answer })
   answer = [];
 }
 
@@ -139,6 +135,7 @@ function openQuestion() {
 `;
 }
 
+
 /* IR PARA A PAGINA DE NIVEIS TELA 3 */
 function createLevels(event) {
   event.preventDefault();
@@ -171,48 +168,18 @@ function createLevels(event) {
   }
 }
 
-function openLevel() {
-  const closedLevel = document.querySelector(".inputs.closed");
-  console.log(closedLevel);
-  closedLevel.innerHTML = "";
-  closedLevel.classList.remove("closed");
-  closedLevel.classList.add("open");
 
-  closedLevel.innerHTML = `
-                    <div class="level">
-                        <h3>Nível 1</h3>
+function writeFinish(){
+  const finish = document.querySelector(".create-finish");
 
-                        <input type="text" id="level-title" required placeholder="Título do nível">
-                        <input type="text" id="level-percentage" required placeholder="% de acerto mínima">
-                        <input type="text" id="level-url" required placeholder="URL da imagem do nível">
-                        <input type="text" id="level-description" required placeholder="Descrição do nível">
-                    </div>
-  `;
-}
-
-function setLevels(event) {
-  event.preventDefault();
-  const createLevel = document.querySelector(".create-level");
-  const createFinish = document.querySelector(".create-finish");
-  const levelTitle = document.querySelector("#level-title").value;
-  const levelPercentage = parseInt(
-    document.querySelector("#level-percentage").value
-  );
-  const levelUrl = document.querySelector("#level-url").value;
-  const levelDescription = document.querySelector("#level-description").value;
-
-  if (levelTitle.length < 10) {
-    alert("O mínimo permitido no título do nível são 10 caracteres!");
-  } else if (levelPercentage < 0 || levelPercentage > 100) {
-    alert("A taxa de acerto tem que ser um número entre 0 e 100!");
-  } else if (isNaN(levelPercentage)) {
-    alert("Por favor, digite a taxa de acertos em forma númerica!");
-  } else if (!levelUrl.includes("https://")) {
-    alert("Coloque a imagem em fortmato URL!");
-  } else if (levelDescription.length < 30) {
-    alert("O mínimo permitido na descrição do nível são 30 caracteres!");
-  } else {
-    /* createLevel.classList.add("hidden");
-    createFinish.classList.remove("hidden"); */
-  }
+  finish.innerHTML = `<div class="create-finish ">
+  <h2>Seu quizz está pronto!</h2>
+  <div class="finish">
+      <img src="${obj.url}" width="500px" height="266px" alt="">
+      <div class="sombra"></div>
+      <h3>${obj.title}</h3>
+  </div>
+  <div class="btn accessquiz">Acessar Quizz</div>
+  <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
+</div>`
 }

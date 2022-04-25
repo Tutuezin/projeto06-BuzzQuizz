@@ -106,7 +106,6 @@ form,
 /* TELA 3.2 */
 
 .question,
-.level,
 .corret-answer,
 .incorret-answer {
   display: flex;
@@ -269,20 +268,42 @@ form,
   margin-top: 46px;
   height: 266px;
   width: 100%;
+  
 }
 
 .finish img {
-  position: absolute;
+  position: relative;
+  
+  
 }
 
 .finish h3 {
   display: flex;
-
-  position: relative;
+  width: 420px;
+  height: 48px;
+  position: absolute;
   font-size: 23px;
   font-weight: 400;
+  left: 17px;
+  bottom: 0;
   z-index: 1;
   color: #ffffff;
+  word-break: break-word;
+  overflow-y: hidden;
+}
+.sombra {
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.5) 65.1%,
+    #000000 100%
+  );
+  position: absolute;
+  border-radius: 5px;
+  z-index: 1;
 }
 
 .btn {

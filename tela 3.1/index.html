@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-
+                
             </form>
         </div>
 
@@ -83,24 +83,31 @@
 
             <form id="levels-info">
                 <div class="inputs open">
-                    <div class="level">
-                        <h3>Nível 1</h3>
+                    <div class="question">
+                        <h3>Pergunta 1</h3>
 
-                        <input type="text" id="level-title" required placeholder="Título do nível">
-                        <input type="text" id="level-percentage" required placeholder="% de acerto mínima">
-                        <input type="text" id="level-url" required placeholder="URL da imagem do nível">
-                        <input type="text" id="level-description" required placeholder="Descrição do nível">
+                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+                        <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+                        <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
                     </div>
                 </div>
                 <div class="inputs closed">
                     <div class="edit-level">
                         <h3>Nível 2</h3>
-                        <button onclick="openLevel()">
+                        <button>
                             <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
                         </button>
                     </div>
                 </div>
-
+                <div class="inputs closed">
+                    <div class="edit-level">
+                        <h3>Nível 3</h3>
+                        <button>
+                            <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
+                        </button>
+                    </div>
+                </div>
                 <button type="submit" class="finish-quiz">Finalizar Quizz</button>
             </form>
         </div>
@@ -108,13 +115,6 @@
         <!-- TELA 3.4 -->
 
         <div class="create-finish ">
-            <h2>Seu quizz está pronto!</h2>
-            <div class="finish">
-                <img src="/assets/sapodeterno.jpg" width="500px" height="266px" alt="">
-                <h3>O quão Potterhead é você?</h3>
-            </div>
-            <div class="btn accessquiz">Acessar Quizz</div>
-            <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
         </div>
     </main>
 
