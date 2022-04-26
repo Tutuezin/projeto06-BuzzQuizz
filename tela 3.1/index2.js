@@ -5,7 +5,7 @@ document
   .querySelector("#questions-info")
   .addEventListener("submit", createLevels);
 
-document.querySelector("#levels-info").addEventListener("submit", setLevels);
+
 
 let questions = parseInt(document.querySelector("#quiz-questions").value);
 let levels = document.querySelector("#quiz-levels").value;
@@ -62,6 +62,20 @@ function nextScreen(criadorQuiz, telaPerguntas) {
   telaPerguntas.innerHTML += `<button type="submit" onclick="getQuest()" class="next-levels">Prosseguir pra criar níveis</button>`;
 }
 
+function writeLevelAbas() {
+  for (let i = 1; i < levels; i++) {
+    document.querySelector(".create-level").innerHTML += `<div class="inputs closed">
+    <div class="edit-level">
+        <h3>Nível ${i+1}</h3>
+        <button onclick="openLevel()">
+            <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
+        </button>
+    </div>
+</div>`;
+  }
+  document.querySelector(".create-level").innerHTML += `<button type="submit" onclick="setLevels(this)" class="finish-quiz">Finalizar Quizz</button>`;
+}
+
 function getQuest() {
   let forms = document.querySelectorAll(".inputs.quest");
   for (let i = 0; i < forms.length; i++) {
@@ -69,6 +83,8 @@ function getQuest() {
     forms[i].style.backgroundColor = "red";
   }
   obj["questions"] = quests;
+  writeLevelAbas();
+  document.querySelector("#levels-info").addEventListener("submit", setLevels);
 }
 
 
@@ -163,13 +179,13 @@ function createLevels(event) {
 }
 
 function openLevel() {
-  let paiLevel = document.querySelector("#levels-info")
+  let paiLevel = document.querySelector(".create-level")
   const closedLevel = paiLevel.querySelector(".inputs.closed");
   closedLevel.innerHTML = '';
 
   closedLevel.classList.remove("closed");
   closedLevel.classList.add("open");
-  let quantidade = document.querySelector(".create-level ").querySelectorAll(".inputs").length;
+  let quantidade = document.querySelector(".create-level ").querySelectorAll(".inputs.open").length;
   closedLevel.innerHTML += `
                     <div class="level">
                         <h3>Nível ${quantidade}</h3>
@@ -183,7 +199,7 @@ function openLevel() {
 }
 
 function setLevels(event) {
-  event.preventDefault();
+  //event.preventDefault();
   const createLevel = document.querySelector(".create-level");
   const createFinish = document.querySelector(".create-finish");
   const levelTitle = document.querySelector(".create-level").querySelector("#level-title").value;
@@ -203,11 +219,15 @@ function setLevels(event) {
     alert("Coloque a imagem em fortmato URL!");
   } else if (levelDescription.length < 30) {
     alert("O mínimo permitido na descrição do nível são 30 caracteres!");
-  } else {
+  } else if(event.parentElement.querySelector(".closed")){
+    alert("Falta mais forms");
+  }
+    else {
     /* createLevel.classList.add("hidden");
     createFinish.classList.remove("hidden"); */
     writeFinish();
   }
+  console.log(event.parentElement);
 }
 
 function writeFinish() {
@@ -223,6 +243,22 @@ function writeFinish() {
   <div class="btn accessquiz">Acessar Quizz</div>
   <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
   </div>`;
+}
+
+function createAnswer() {
+  const creatLevel = document.querySelector(".create-level");
+  const allLevels = creatLevel.querySelectorAll(".inputs.open")
+
+
+  for (let j = 0; j < allLevels.length; j++) {
+    let title = allLevels[j].querySelectorAll("#level-title").value;
+    let image = allLevels[j].querySelectorAll("#level-url").value;
+    let text = allLevels[j].querySelectorAll("#level-description").value;
+    let minValue = allLevels[j].querySelectorAll("#level-percentage").value;
+    answer.push({ title:title, image:image, text:text, minValue:minValue});
+  }
+  obj['levels'] = answer;
+  answer = [];
 }
 
 /* SE VC VER ISSO VC ESTA ATT */
