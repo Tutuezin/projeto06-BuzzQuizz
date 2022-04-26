@@ -61,6 +61,15 @@ form,
   align-items: center;
   margin-top: 150px;
 }
+
+.create-finish {
+  width: 500px;
+}
+
+.create-finish .finish {
+  width: 500px;
+}
+
 .create-finish {
   align-items: center;
   margin-top: 50px;
@@ -226,6 +235,22 @@ form,
 
 /* TELA 3.3 */
 
+.create-level {
+  width: 1050px;
+}
+
+.create-level form {
+  width: 612px;
+}
+
+.create-level .inputs.open {
+  width: 612px;
+}
+
+.create-level .inputs.closed {
+  width: 612px;
+}
+
 .create-level h2 {
   font-weight: 700;
   font-size: 23px;
@@ -388,6 +413,7 @@ form,
     width: 100%;
   }
 
+  /* questions */
   .create-question {
     width: 100%;
   }
@@ -405,6 +431,34 @@ form,
   }
 
   .inputs.closed {
+    width: 100%;
+  }
+
+  /* levels */
+
+  .create-level {
+    width: 100%;
+  }
+
+  .create-level form {
+    width: 100%;
+  }
+
+  .create-level .inputs.open {
+    width: 100%;
+  }
+
+  .create-level .inputs.closed {
+    width: 100%;
+  }
+
+  /* end */
+
+  .create-finish {
+    width: 100%;
+  }
+
+  .create-finish .finish {
     width: 100%;
   }
 }
