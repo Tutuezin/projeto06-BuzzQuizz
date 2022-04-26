@@ -67,6 +67,18 @@ function nextScreen(criadorQuiz, telaPerguntas) {
 }
 
 function writeLevelAbas() {
+
+  document.querySelector("#levels-info").innerHTML = `<div class="inputs open">
+  <div class="level">
+      <h3>Nível 1</h3>
+
+      <input type="text" id="level-title" required placeholder="Título do nível">
+      <input type="text" id="level-percentage" required placeholder="% de acerto mínima">
+      <input type="text" id="level-url" required placeholder="URL da imagem do nível">
+      <input type="text" id="level-dhiddenescription" required placeholder="Descrição do nível">
+  </div>
+</div>
+</form>`
   for (let i = 1; i < levels; i++) {
     document.querySelector("#levels-info").innerHTML += `<div class="inputs closed">
     <div class="edit-level">
@@ -77,7 +89,7 @@ function writeLevelAbas() {
     </div>
 </div>`;
   }
-  document.querySelector("#levels-info").innerHTML += `<button type="submit" onclick="setLevels(this)" class="finish-quiz">Finalizar Quizz</button>`;
+  document.querySelector("#levels-info").innerHTML += `<button type="submit" onclick="" class="finish-quiz">Finalizar Quizz</button>`;
 }
 
 function getQuest() {
@@ -111,6 +123,7 @@ function createQuestions(pergunta) {
   }
   quests.push({ title: title, color: color, answers: answer });
   answer = [];
+  writeLevelAbas()
 }
 
 /* abrir questões TELA 3.2 */
@@ -205,7 +218,7 @@ function openLevel() {
 }
 
 function setLevels(event) {
-  //event.preventDefault();
+  event.preventDefault();
   const createLevel = document.querySelector(".create-level");
   const createFinish = document.querySelector(".create-finish");
   const levelTitle = document
@@ -233,6 +246,7 @@ function setLevels(event) {
     /* createLevel.classList.add("hidden");
     createFinish.classList.remove("hidden"); */
     writeFinish();
+    postObjeto();
   }
   console.log(event.parentElement);
 }
