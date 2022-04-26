@@ -1,8 +1,6 @@
 document.querySelector("#quiz-info").addEventListener("submit", quizInfo);
 
-document
-  .querySelector("#questions-info")
-  .addEventListener("submit", createLevels);
+//document.querySelector("#questions-info").addEventListener("submit", createLevels);
 
 let questsQtd = parseInt(document.querySelector("#quiz-questions").value);
 let levels = document.querySelector("#quiz-levels").value;
@@ -56,7 +54,7 @@ function nextScreen(criadorQuiz, telaPerguntas) {
   telaPerguntas.classList.remove("hidden");
 
   for (let i = 1; i < questsQtd; i++) {
-    telaPerguntas.innerHTML += `<div class="inputs closed">
+  document.querySelector("#questions-info").innerHTML += `<div class="inputs closed">
   <div class="edit-question">
       <h3>Pergunta ${i + 1}</h3>
       <button onclick="openQuestion()">
@@ -65,53 +63,21 @@ function nextScreen(criadorQuiz, telaPerguntas) {
   </div>
 </div>`;
   }
-  telaPerguntas.innerHTML += `<button type="submit" onclick="getQuest()" class="next-levels">Prosseguir pra criar níveis</button>`;
+  document.querySelector("#questions-info").innerHTML += `<button type="submit" onclick="getQuest()" class="next-levels">Prosseguir pra criar níveis</button>`;
 }
 
 function writeLevelAbas() {
-  let form = document.querySelector(".create-level");
-  form.innerHTML = `<form id="questions-info">
-  <div class="inputs open quest">
-      <div class="question">
-          <h3>Pergunta 1</h3>
-
-          <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
-          <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
-      </div>
-
-      <div class="corret-answer">
-          <h3>Resposta correta</h3>
-
-          <input type="text" id="quiz-corret-answer" required placeholder="Resposta correta">
-          <input type="text" id="quiz-corret-url" required placeholder="URL da imagem">
-      </div>
-
-      <div class="incorret-answer">
-          <h3>Respostas incorretas</h3>
-
-          <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
-          <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
-
-          <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 2">
-          <input class="margin" type="text" id="quiz-incorret-url" placeholder="URL da imagem 2">
-
-          <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 3">
-          <input type="text" id="quiz-incorret-url" placeholder="URL da imagem 3">
-      </div>
-  </div>`;
-  for (let i = 1; i < form.levels; i++) {
-    form.innerHTML += `<div class="inputs closed">
+  for (let i = 1; i < levels; i++) {
+    document.querySelector(".create-level").innerHTML += `<div class="inputs closed">
     <div class="edit-level">
-        <h3>Nível ${i + 1}</h3>
+        <h3>Nível ${i+1}</h3>
         <button onclick="openLevel()">
             <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
         </button>
     </div>
 </div>`;
   }
-  document.querySelector(
-    ".create-level"
-  ).innerHTML += `<button type="submit" onclick="setLevels()" class="finish-quiz">Finalizar Quizz</button> </form>`;
+  document.querySelector(".create-level").innerHTML += `<button type="submit" onclick="setLevels(this)" class="finish-quiz">Finalizar Quizz</button>`;
 }
 
 function getQuest() {
