@@ -18,7 +18,7 @@ function quizInfo(event) {
   const createQuiz = document.querySelector(".create-quiz");
   const createQuestion = document.querySelector(".create-question");
   const title = document.querySelector("#quiz-title").value;
-  const url = document.querySelector("#quiz-url").value;
+  const image = document.querySelector("#quiz-url").value;
   questions = document.querySelector("#quiz-questions").value;
   levels = document.querySelector("#quiz-levels").value;
 
@@ -27,7 +27,7 @@ function quizInfo(event) {
     alert("O mínimo permitido são 20 caracteres!");
   } else if (title.length > 65) {
     alert("O máximo permitido são 65 caracteres!");
-  } else if (!url.includes("https://")) {
+  } else if (!image.includes("https://")) {
     alert("Coloque a imagem em fortmato URL!");
   } else if (parseInt(questions) < 3) {
     alert("O mínimo permitido são 3 perguntas!");
@@ -37,11 +37,13 @@ function quizInfo(event) {
     alert("O mínimo permitido são 2 níveis!");
   } else if (isNaN(levels)) {
     alert("Por favor, digite a quantidade de níveis em números!");
+  } else if(createQuestion.querySelector(".closed")){
+    alert("Falta mais forms");
   } else {
     nextScreen(createQuiz, createQuestion);
   }
 
-  obj = { title, url };
+  obj = { title, image };
   console.log(obj);
 }
 
@@ -103,9 +105,11 @@ function createQuestions(pergunta) {
   for (let j = 0; j < 3; j++) {
     let textin = pergunta.querySelectorAll("#quiz-incorret-answer")[j].value;
     let imagein = pergunta.querySelectorAll("#quiz-incorret-url")[j].value;
+    if(textin && imagein){
     answer.push({ text: textin, image: imagein, isCorrectAnswer: false });
+    }
   }
-  quests.push({ title: title, color: color, answer });
+  quests.push({ title: title, color: color, answers:answer });
   answer = [];
 }
 
@@ -243,6 +247,7 @@ function writeFinish() {
   <div class="btn accessquiz">Acessar Quizz</div>
   <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
   </div>`;
+  createAnswer()
 }
 
 function createAnswer() {
@@ -251,10 +256,10 @@ function createAnswer() {
 
 
   for (let j = 0; j < allLevels.length; j++) {
-    let title = allLevels[j].querySelectorAll("#level-title").value;
-    let image = allLevels[j].querySelectorAll("#level-url").value;
-    let text = allLevels[j].querySelectorAll("#level-description").value;
-    let minValue = allLevels[j].querySelectorAll("#level-percentage").value;
+    let title = allLevels[j].querySelector("#level-title").value;
+    let image = allLevels[j].querySelector("#level-url").value;
+    let text = allLevels[j].querySelector("#level-description").value;
+    let minValue = allLevels[j].querySelector("#level-percentage").value;
     answer.push({ title:title, image:image, text:text, minValue:minValue});
   }
   obj['levels'] = answer;
