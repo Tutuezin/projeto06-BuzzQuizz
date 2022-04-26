@@ -63,7 +63,7 @@ function nextScreen(criadorQuiz, telaPerguntas) {
   </div>
 </div>`;
   }
-  document.querySelector("#questions-info").innerHTML += `<button type="submit" onclick="getQuest()" class="next-levels">Prosseguir pra criar níveis</button>`;
+  document.querySelector("#questions-info").innerHTML += `<button type="submit" class="next-levels">Prosseguir pra criar níveis</button>`;
 }
 
 function writeLevelAbas() {
@@ -75,7 +75,7 @@ function writeLevelAbas() {
       <input type="text" id="level-title" required placeholder="Título do nível">
       <input type="text" id="level-percentage" required placeholder="% de acerto mínima">
       <input type="text" id="level-url" required placeholder="URL da imagem do nível">
-      <input type="text" id="level-dhiddenescription" required placeholder="Descrição do nível">
+      <input type="text" id="level-description" required placeholder="Descrição do nível">
   </div>
 </div>
 </form>`
@@ -89,7 +89,7 @@ function writeLevelAbas() {
     </div>
 </div>`;
   }
-  document.querySelector("#levels-info").innerHTML += `<button type="submit" onclick="" class="finish-quiz">Finalizar Quizz</button>`;
+  document.querySelector("#levels-info").innerHTML += `<button type="submit" class="finish-quiz">Finalizar Quizz</button>`;
 }
 
 function getQuest() {
@@ -118,6 +118,7 @@ function createQuestions(pergunta) {
     let textin = pergunta.querySelectorAll("#quiz-incorret-answer")[j].value;
     let imagein = pergunta.querySelectorAll("#quiz-incorret-url")[j].value;
     if (textin && imagein) {
+      console.log("uma vez")
       answer.push({ text: textin, image: imagein, isCorrectAnswer: false });
     }
   }
@@ -189,9 +190,12 @@ function createLevels(event) {
     alert("Coloque a imagem certa em fortmato URL!");
   } else if (!quizIncorretUrl.includes("https://")) {
     alert("Coloque a imagem errada em fortmato URL!");
+  } else if (document.querySelector(".create-question").querySelector(".closed")) {
+    alert("Falta mais forms");
   } else {
     createQuestion.classList.add("hidden");
     createLevel.classList.remove("hidden");
+    getQuest()
   }
 }
 
@@ -240,21 +244,21 @@ function setLevels(event) {
     alert("Coloque a imagem em fortmato URL!");
   } else if (levelDescription.length < 30) {
     alert("O mínimo permitido na descrição do nível são 30 caracteres!");
-  } else if (event.parentElement.querySelector(".closed")) {
+  } else if (document.querySelector(".create-level").querySelector(".closed")) {
     alert("Falta mais forms");
   } else {
     /* createLevel.classList.add("hidden");
     createFinish.classList.remove("hidden"); */
-    writeFinish();
     postObjeto();
+    
   }
   console.log(event.parentElement);
 }
 
-function writeFinish() {
+function writeFinish(x) {
   const finish = document.querySelector(".create-finish");
-
-  finish.innerHTML = `<div class="create-finish ">
+  if(x == 0){
+    finish.innerHTML = `<div class="create-finish ">
   <h2>Seu quizz está pronto!</h2>
   <div class="finish">
   <img src="${obj.url}" width="500px" height="266px" alt="">
@@ -264,7 +268,20 @@ function writeFinish() {
   <div class="btn accessquiz">Acessar Quizz</div>
   <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
   </div>`;
-  createAnswer();
+  
+  }else{
+    finish.innerHTML = `<div class="create-finish ">
+  <h2>ERRO NO SEU QUIZZ!</h2>
+  <div class="finish">
+  <img src="${obj.url}" width="500px" height="266px" alt="">
+  <div class="sombra"></div>
+  <h3>${obj.title}</h3>
+  </div>
+  <div class="btn accessquiz">Revisar erro</div>
+  <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
+  </div>`;
+  }
+  
 }
 
 function createAnswer() {
@@ -283,11 +300,14 @@ function createAnswer() {
 }
 
 function postObjeto(){
+  createAnswer();
   axios.post(API, obj)
       .then(e=>{
         console.log(e);
+        writeFinish(0)
       }).catch(erro =>{
         console.log(erro)
+        writeFinish(1)
       });
         
       
