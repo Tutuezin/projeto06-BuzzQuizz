@@ -1,4 +1,4 @@
-const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
+
 document.querySelector("#quiz-info").addEventListener("submit", quizInfo);
 
 document
@@ -7,7 +7,7 @@ document
 
 
 
-let questions = parseInt(document.querySelector("#quiz-questions").value);
+let questsQtd = parseInt(document.querySelector("#quiz-questions").value);
 let levels = document.querySelector("#quiz-levels").value;
 let obj,
   quests = [],
@@ -19,7 +19,7 @@ function quizInfo(event) {
   const createQuestion = document.querySelector(".create-question");
   const title = document.querySelector("#quiz-title").value;
   const image = document.querySelector("#quiz-url").value;
-  questions = document.querySelector("#quiz-questions").value;
+  questsQtd = document.querySelector("#quiz-questions").value;
   levels = document.querySelector("#quiz-levels").value;
 
   // verifica as informações básicas do quiz
@@ -29,9 +29,9 @@ function quizInfo(event) {
     alert("O máximo permitido são 65 caracteres!");
   } else if (!image.includes("https://")) {
     alert("Coloque a imagem em fortmato URL!");
-  } else if (parseInt(questions) < 3) {
+  } else if (parseInt(questsQtd) < 3) {
     alert("O mínimo permitido são 3 perguntas!");
-  } else if (isNaN(questions)) {
+  } else if (isNaN(questsQtd)) {
     alert("Por favor, digite a quantidade de questões em forma númerica!");
   } else if (parseInt(levels) < 2) {
     alert("O mínimo permitido são 2 níveis!");
@@ -51,7 +51,7 @@ function nextScreen(criadorQuiz, telaPerguntas) {
   criadorQuiz.classList.add("hidden");
   telaPerguntas.classList.remove("hidden");
 
-  for (let i = 1; i < questions; i++) {
+  for (let i = 1; i < questsQtd; i++) {
     telaPerguntas.innerHTML += `<div class="inputs closed">
   <div class="edit-question">
       <h3>Pergunta ${i + 1}</h3>
@@ -82,7 +82,6 @@ function getQuest() {
   let forms = document.querySelectorAll(".inputs.quest");
   for (let i = 0; i < forms.length; i++) {
     createQuestions(forms[i]);
-    forms[i].style.backgroundColor = "red";
   }
   obj["questions"] = quests;
   writeLevelAbas();
