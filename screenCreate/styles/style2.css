@@ -6,7 +6,7 @@ body {
   background-color: #fafafa;
 }
 
-.tela2,
+tela2,
 form,
 .top-side,
 .create-quiz,
@@ -61,26 +61,9 @@ form,
   align-items: center;
   margin-top: 150px;
 }
-
-.create-finish {
-  width: 500px;
-}
-
-.create-finish .finish {
-  width: 500px;
-}
-
 .create-finish {
   align-items: center;
   margin-top: 50px;
-}
-
-.create-quiz {
-  width: 1050px;
-}
-
-.create-quiz form {
-  width: 612px;
 }
 
 .create-quiz h2 {
@@ -94,14 +77,9 @@ form,
   display: flex;
   flex-direction: column;
   padding: 24px;
-  width: 612px;
 
   background-color: #ffffff;
   box-shadow: 0px 0px 10px 0px #0000000d;
-}
-
-.create-quiz .inputs input {
-  width: 564px;
 }
 
 .next-questions {
@@ -137,22 +115,6 @@ form,
 .incorret-answer {
   display: flex;
   flex-direction: column;
-}
-
-.create-question {
-  width: 1050px;
-}
-
-.create-question form {
-  width: 612px;
-}
-
-.inputs.open.quest {
-  width: 612px;
-}
-
-.inputs.closed {
-  width: 612px;
 }
 
 .create-question h2 {
@@ -235,22 +197,6 @@ form,
 
 /* TELA 3.3 */
 
-.create-level {
-  width: 1050px;
-}
-
-.create-level form {
-  width: 612px;
-}
-
-.create-level .inputs.open {
-  width: 612px;
-}
-
-.create-level .inputs.closed {
-  width: 612px;
-}
-
 .create-level h2 {
   font-weight: 700;
   font-size: 23px;
@@ -332,6 +278,7 @@ form,
   position: relative;
 }
 
+
 .finish h3 {
   display: flex;
   width: 420px;
@@ -395,70 +342,4 @@ form,
   transform: scale(1.01);
   transition: all 100ms ease-out;
   background-color: #962923;
-}
-
-@media (max-width: 585px) {
-  .create-quiz {
-    width: 100%;
-  }
-
-  .create-quiz form {
-    width: 100%;
-  }
-
-  .create-quiz .inputs {
-    width: 100%;
-  }
-  .create-quiz .inputs input {
-    width: 100%;
-  }
-
-  /* questions */
-  .create-question {
-    width: 100%;
-  }
-
-  .create-question form {
-    width: 100%;
-  }
-
-  .inputs input {
-    width: 100%;
-  }
-
-  .inputs.open.quest {
-    width: 100%;
-  }
-
-  .inputs.closed {
-    width: 100%;
-  }
-
-  /* levels */
-
-  .create-level {
-    width: 100%;
-  }
-
-  .create-level form {
-    width: 100%;
-  }
-
-  .create-level .inputs.open {
-    width: 100%;
-  }
-
-  .create-level .inputs.closed {
-    width: 100%;
-  }
-
-  /* end */
-
-  .create-finish {
-    width: 100%;
-  }
-
-  .create-finish .finish {
-    width: 100%;
-  }
 }

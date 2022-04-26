@@ -1,4 +1,4 @@
-const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
+const API = "https://mock-api.driven.com.br/api/v3/buzzquizz/quizzes";
 const quizBox = document.querySelector(".boxes-quizz");
 const questions = document.querySelector(".container");
 
@@ -8,19 +8,19 @@ let quizClickada;
 let allQuest = document.querySelectorAll(".choices");
 let quizId;
 let score = 0;
-let lista = [];
+let lista =[];
 
 function getQuizz() {
   axios.get(API).then((e) => {
-    console.log(e.data);
+    console.log(e.data)
     quizzes = e.data;
     writeQuizz();
   });
 }
 
-function verifyLocal() {
-  if (localStorage["ids"]) {
-    lista = JSON.parse(localStorage["ids"]);
+function verifyLocal(){
+  if(localStorage['ids']){
+    lista = JSON.parse(localStorage['ids']);
     return true;
   }
   return false;
@@ -28,27 +28,25 @@ function verifyLocal() {
 
 // Function renderiza as quizz
 function writeQuizz() {
-  quizBox.innerHTML = "";
-  verifyLocal;
-  if (verifyLocal()) {
-    document.querySelector(".createQuizz").classList.add("my");
-    document.querySelector(".createQuizz").innerHTML = `<div class="seuQuiz">
+  verifyLocal();
+  if(verifyLocal()){
+    document.querySelector(".screen.cria").innerHTML = `<div class="seuQuiz">
     <strong style="font-size:23px">Seus Quizzes</strong>
     <ion-icon size="large"name="add-circle"></ion-icon></div>
-    <div class="myquiz"></div>`;
+    <div class="myquiz"></div>`
     quizzes.forEach((element) => {
-      if (lista.includes(element.id)) {
-        console.log("aq");
-        document.querySelector(
-          ".myquiz"
-        ).innerHTML += `<div class="box-quiz" id="${element.id}">
+      console.log(lista.includes(element.id))
+
+      if(lista.includes(element.id)){
+        console.log("aq")
+      document.querySelector(".screen.cria").innerHTML += `<div class="box-quiz" id="${element.id}">
           <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
           <div class="sombra">
           <span class="title">${element.title}</span>
           </div>
       </div>`;
-      } else {
-        quizBox.innerHTML += `<div class="box-quiz" id="${element.id}">
+    }else{
+        document.querySelector(".boxes-quizz").innerHTML += `<div class="box-quiz" id="${element.id}">
           <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
           <div class="sombra">
           <span class="title">${element.title}</span>
@@ -56,18 +54,23 @@ function writeQuizz() {
       </div>`;
       }
     });
-  } else {
+  }else{
     quizzes.forEach((element) => {
-      quizBox.innerHTML += `<div class="box-quiz" id="${element.id}">
-          <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
-          <div class="sombra">
-          <span class="title">${element.title}</span>
-          </div>
-      </div>`;
-    });
+    document.querySelector(".boxes-quizz").innerHTML += `<div class="box-quiz" id="${element.id}">
+      <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
+      <div class="sombra">
+      <span class="title">${element.title}</span>
+      </div>
+  </div>`;
+  
+});
+
   }
-  getOneQuiz();
-}
+    getOneQuiz();
+  }
+  
+  
+
 
 // Function devolver id do quizz clicado
 
@@ -174,8 +177,7 @@ function effectChoice(x) {
   const questoes = [...questao.children]; // pega todas as escolhas dentro do elemento pai
   if (x.classList.contains("true")) {
     score++;
-  }
-  for (let i = 0; i < questoes.length; i++) {
+  } for (let i = 0; i < questoes.length; i++) {
     if (x !== questoes[i]) {
       questoes[i].classList.add("not");
     }
@@ -194,15 +196,29 @@ function nextChoice(x) {
   }
 }
 
+function comparadorLevel(a, b) {
+  return b.minValue - a.minValue;
+}
+
 function writeScore() {
+  let texto = quizClickada.levels[0];
   let resposta = ((score * 100) / quizClickada.questions.length).toFixed(0);
-  let texto;
-  let teste = 100 / quizClickada.levels.length;
-  for (let i = 0; i < teste; i++) {
-    if (resposta > teste) {
-      texto = quizClickada.levels[1];
-    } else {
-      texto = quizClickada.levels[0];
+  quizClickada.levels.sort(comparadorLevel);
+  for (let i = 0; i < quizClickada.levels.length; i++) {
+    for(let j =1; j<quizClickada.levels.length; j++){
+      if(quizClickada.levels[i].minValue>quizClickada.levels[j].minValue){
+        texto = quizClickada.levels[i];
+        if(resposta > quizClickada.levels[i].minValue){
+          texto =quizClickada.levels[i];
+        }else{
+          texto =quizClickada.levels[j];
+        }
+      }
+      if(quizClickada.levels[0].minValue > texto.minValue){
+        texto = quizClickada.levels[0];
+      }
+   
+      
     }
   }
   questions.innerHTML += `<div class="bot-quiz">
@@ -218,9 +234,9 @@ function writeScore() {
                         </p>
                     </div>
                 </div>`;
-  setTimeout(() => {
-    document
-      .querySelector(".quiz-score")
-      .scrollIntoView({ behavior: "smooth" });
-  }, 1500);
+                setTimeout(()=>{
+                  document.querySelector(".quiz-score").scrollIntoView({ behavior: "smooth" });
+                }, 1500)
+                
 }
+

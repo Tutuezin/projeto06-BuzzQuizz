@@ -317,7 +317,7 @@ img {
     width: 100%;
   }
   .allQuizz {
-    width: 100%;
+    width: 90%;
   }
   .boxes-quizz {
     flex-direction: column;
@@ -337,6 +337,7 @@ img {
   .bot-quiz {
     width: 100%;
   }.seuQuiz{
+    display: flex;
     justify-content: space-between;
   }
 }
