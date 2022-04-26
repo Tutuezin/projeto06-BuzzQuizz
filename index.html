@@ -27,10 +27,9 @@
         <div class=" screen one">
             <div class="createQuizz">
                 <div class="description">Você não criou nenhum quizz ainda :(</div>
-
-                <a class="btncreatequizz" href="tela 3.1">CriarQuizz</a>
+                <button onclick="comeceComeco()" class="btncreatequizz">CriarQuizz</button>
             </div>
-            <div class="allQuizz">
+            <div class=" allQuizz">
                 <strong style="font-size:23px">Todos os Quizzes</strong>
                 <div class="boxes-quizz">
                 </div>
@@ -55,7 +54,7 @@
         </div>
     </main>
     <div class="tela2">
-        <div class=" create-quiz ">
+        <div class=" create-quiz hidden">
             <h2>Comece pelo começo</h2>
 
             <form id="quiz-info">
@@ -71,7 +70,7 @@
 
 
         <!-- TELA 3.2 -->
-        <div class="create-question  ">
+        <div class="create-question hidden">
             <h2>Crie suas perguntas</h2>
 
             <form id="questions-info">
@@ -110,7 +109,7 @@
 
         <!-- TELA 3.3 -->
 
-        <div class="create-level ">
+        <div class="create-level hidden">
             <h2>Agora, decida os níveis</h2>
 
             <form id="levels-info">
@@ -121,7 +120,7 @@
                         <input type="text" id="level-title" required placeholder="Título do nível">
                         <input type="text" id="level-percentage" required placeholder="% de acerto mínima">
                         <input type="text" id="level-url" required placeholder="URL da imagem do nível">
-                        <input type="text" id="level-description" required placeholder="Descrição do nível">
+                        <input type="text" id="level-dhiddenescription" required placeholder="Descrição do nível">
                     </div>
                 </div>
             </form>
@@ -129,7 +128,7 @@
 
         <!-- TELA 3.4 -->
 
-        <div class="create-finish ">
+        <div class="create-finish">
         </div>
     </div>
     </div>

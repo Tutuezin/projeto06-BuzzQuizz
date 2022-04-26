@@ -1,17 +1,21 @@
-
 document.querySelector("#quiz-info").addEventListener("submit", quizInfo);
 
 document
   .querySelector("#questions-info")
   .addEventListener("submit", createLevels);
 
-
-
 let questsQtd = parseInt(document.querySelector("#quiz-questions").value);
 let levels = document.querySelector("#quiz-levels").value;
 let obj,
   quests = [],
   answer = [];
+
+function comeceComeco() {
+  const startQuiz = document.querySelector(".screen.one");
+  const createQuiz = document.querySelector(".create-quiz");
+  startQuiz.innerHTML = "";
+  createQuiz.classList.remove("hidden");
+}
 
 function quizInfo(event) {
   event.preventDefault();
@@ -37,7 +41,7 @@ function quizInfo(event) {
     alert("O mínimo permitido são 2 níveis!");
   } else if (isNaN(levels)) {
     alert("Por favor, digite a quantidade de níveis em números!");
-  } else if(createQuestion.querySelector(".closed")){
+  } else if (createQuestion.querySelector(".closed")) {
     alert("Falta mais forms");
   } else {
     nextScreen(createQuiz, createQuestion);
@@ -65,17 +69,49 @@ function nextScreen(criadorQuiz, telaPerguntas) {
 }
 
 function writeLevelAbas() {
-  for (let i = 1; i < levels; i++) {
-    document.querySelector(".create-level").innerHTML += `<div class="inputs closed">
+  let form = document.querySelector(".create-level");
+  form.innerHTML = `<form id="questions-info">
+  <div class="inputs open quest">
+      <div class="question">
+          <h3>Pergunta 1</h3>
+
+          <input type="text" id="quiz-question" required placeholder="Texto da pergunta">
+          <input type="text" id="quiz-color" required placeholder="Cor de fundo da pergunta">
+      </div>
+
+      <div class="corret-answer">
+          <h3>Resposta correta</h3>
+
+          <input type="text" id="quiz-corret-answer" required placeholder="Resposta correta">
+          <input type="text" id="quiz-corret-url" required placeholder="URL da imagem">
+      </div>
+
+      <div class="incorret-answer">
+          <h3>Respostas incorretas</h3>
+
+          <input type="text" id="quiz-incorret-answer" required placeholder="Resposta incorreta 1">
+          <input class="margin" type="text" id="quiz-incorret-url" required placeholder="URL da imagem 1">
+
+          <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 2">
+          <input class="margin" type="text" id="quiz-incorret-url" placeholder="URL da imagem 2">
+
+          <input type="text" id="quiz-incorret-answer" placeholder="Resposta incorreta 3">
+          <input type="text" id="quiz-incorret-url" placeholder="URL da imagem 3">
+      </div>
+  </div>`;
+  for (let i = 1; i < form.levels; i++) {
+    form.innerHTML += `<div class="inputs closed">
     <div class="edit-level">
-        <h3>Nível ${i+1}</h3>
+        <h3>Nível ${i + 1}</h3>
         <button onclick="openLevel()">
             <img src="/assets/editQuestion.svg" width="26px" height="23px" alt="">
         </button>
     </div>
 </div>`;
   }
-  document.querySelector(".create-level").innerHTML += `<button type="submit" onclick="setLevels(this)" class="finish-quiz">Finalizar Quizz</button>`;
+  document.querySelector(
+    ".create-level"
+  ).innerHTML += `<button type="submit" onclick="setLevels()" class="finish-quiz">Finalizar Quizz</button> </form>`;
 }
 
 function getQuest() {
@@ -87,7 +123,6 @@ function getQuest() {
   writeLevelAbas();
   document.querySelector("#levels-info").addEventListener("submit", setLevels);
 }
-
 
 function createQuestions(pergunta) {
   const createQuestion = document.querySelector(".create-question");
@@ -104,11 +139,11 @@ function createQuestions(pergunta) {
   for (let j = 0; j < 3; j++) {
     let textin = pergunta.querySelectorAll("#quiz-incorret-answer")[j].value;
     let imagein = pergunta.querySelectorAll("#quiz-incorret-url")[j].value;
-    if(textin && imagein){
-    answer.push({ text: textin, image: imagein, isCorrectAnswer: false });
+    if (textin && imagein) {
+      answer.push({ text: textin, image: imagein, isCorrectAnswer: false });
     }
   }
-  quests.push({ title: title, color: color, answers:answer });
+  quests.push({ title: title, color: color, answers: answer });
   answer = [];
 }
 
@@ -182,13 +217,15 @@ function createLevels(event) {
 }
 
 function openLevel() {
-  let paiLevel = document.querySelector(".create-level")
+  let paiLevel = document.querySelector(".create-level");
   const closedLevel = paiLevel.querySelector(".inputs.closed");
-  closedLevel.innerHTML = '';
+  closedLevel.innerHTML = "";
 
   closedLevel.classList.remove("closed");
   closedLevel.classList.add("open");
-  let quantidade = document.querySelector(".create-level ").querySelectorAll(".inputs.open").length;
+  let quantidade = document
+    .querySelector(".create-level ")
+    .querySelectorAll(".inputs.open").length;
   closedLevel.innerHTML += `
                     <div class="level">
                         <h3>Nível ${quantidade}</h3>
@@ -205,7 +242,9 @@ function setLevels(event) {
   //event.preventDefault();
   const createLevel = document.querySelector(".create-level");
   const createFinish = document.querySelector(".create-finish");
-  const levelTitle = document.querySelector(".create-level").querySelector("#level-title").value;
+  const levelTitle = document
+    .querySelector(".create-level")
+    .querySelector("#level-title").value;
   const levelPercentage = parseInt(
     document.querySelector("#level-percentage").value
   );
@@ -222,10 +261,9 @@ function setLevels(event) {
     alert("Coloque a imagem em fortmato URL!");
   } else if (levelDescription.length < 30) {
     alert("O mínimo permitido na descrição do nível são 30 caracteres!");
-  } else if(event.parentElement.querySelector(".closed")){
+  } else if (event.parentElement.querySelector(".closed")) {
     alert("Falta mais forms");
-  }
-    else {
+  } else {
     /* createLevel.classList.add("hidden");
     createFinish.classList.remove("hidden"); */
     writeFinish();
@@ -246,22 +284,21 @@ function writeFinish() {
   <div class="btn accessquiz">Acessar Quizz</div>
   <div class="btn backhome" onclick="window.location.reload()">Voltar para home</div>
   </div>`;
-  createAnswer()
+  createAnswer();
 }
 
 function createAnswer() {
   const creatLevel = document.querySelector(".create-level");
-  const allLevels = creatLevel.querySelectorAll(".inputs.open")
-
+  const allLevels = creatLevel.querySelectorAll(".inputs.open");
 
   for (let j = 0; j < allLevels.length; j++) {
     let title = allLevels[j].querySelector("#level-title").value;
     let image = allLevels[j].querySelector("#level-url").value;
     let text = allLevels[j].querySelector("#level-description").value;
     let minValue = allLevels[j].querySelector("#level-percentage").value;
-    answer.push({ title:title, image:image, text:text, minValue:minValue});
+    answer.push({ title: title, image: image, text: text, minValue: minValue });
   }
-  obj['levels'] = answer;
+  obj["levels"] = answer;
   answer = [];
 }
 
