@@ -1,6 +1,6 @@
 document.querySelector("#quiz-info").addEventListener("submit", quizInfo);
 
-//document.querySelector("#questions-info").addEventListener("submit", createLevels);
+document.querySelector("#questions-info").addEventListener("submit", createLevels);
 
 let questsQtd = parseInt(document.querySelector("#quiz-questions").value);
 let levels = document.querySelector("#quiz-levels").value;
@@ -68,7 +68,7 @@ function nextScreen(criadorQuiz, telaPerguntas) {
 
 function writeLevelAbas() {
   for (let i = 1; i < levels; i++) {
-    document.querySelector(".create-level").innerHTML += `<div class="inputs closed">
+    document.querySelector("#levels-info").innerHTML += `<div class="inputs closed">
     <div class="edit-level">
         <h3>Nível ${i+1}</h3>
         <button onclick="openLevel()">
@@ -77,7 +77,7 @@ function writeLevelAbas() {
     </div>
 </div>`;
   }
-  document.querySelector(".create-level").innerHTML += `<button type="submit" onclick="setLevels(this)" class="finish-quiz">Finalizar Quizz</button>`;
+  document.querySelector("#levels-info").innerHTML += `<button type="submit" onclick="setLevels(this)" class="finish-quiz">Finalizar Quizz</button>`;
 }
 
 function getQuest() {
@@ -86,7 +86,7 @@ function getQuest() {
     createQuestions(forms[i]);
   }
   obj["questions"] = quests;
-  writeLevelAbas();
+  
   document.querySelector("#levels-info").addEventListener("submit", setLevels);
 }
 
@@ -266,6 +266,17 @@ function createAnswer() {
   }
   obj["levels"] = answer;
   answer = [];
+}
+
+function postObjeto(){
+  axios.post(API, obj)
+      .then(e=>{
+        console.log(e);
+      }).catch(erro =>{
+        console.log(erro)
+      });
+        
+      
 }
 
 /* SE VC VER ISSO VC ESTA ATT */
