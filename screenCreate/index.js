@@ -249,6 +249,7 @@ function setLevels(event) {
   } else {
     /* createLevel.classList.add("hidden");
     createFinish.classList.remove("hidden"); */
+    document.querySelector(".create-level").classList.add("hidden");
     postObjeto();
     
   }
@@ -273,7 +274,7 @@ function writeFinish(x) {
     finish.innerHTML = `<div class="create-finish ">
   <h2>ERRO NO SEU QUIZZ!</h2>
   <div class="finish">
-  <img src="${obj.url}" width="500px" height="266px" alt="">
+  <img src="${obj.image}" width="500px" height="266px" alt="">
   <div class="sombra"></div>
   <h3>${obj.title}</h3>
   </div>
@@ -303,7 +304,7 @@ function postObjeto(){
   createAnswer();
   axios.post(API, obj)
       .then(e=>{
-        console.log(e);
+        addLocal(e.data.id);
         writeFinish(0)
       }).catch(erro =>{
         console.log(erro)
@@ -311,6 +312,18 @@ function postObjeto(){
       });
         
       
+}
+
+function addLocal(id) {
+  if (localStorage) {
+      let ids;
+      if (!localStorage['ids']) ids = [];
+      else ids = JSON.parse(localStorage['ids']);            
+      if (!(ids instanceof Array)) ids = [];
+      ids.push(id);
+
+      localStorage.setItem('ids', JSON.stringify(ids));
+  } 
 }
 
 /* SE VC VER ISSO VC ESTA ATT */

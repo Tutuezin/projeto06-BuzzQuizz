@@ -61,6 +61,10 @@ form,
   align-items: center;
   margin-top: 150px;
 }
+.create-finish {
+  align-items: center;
+  margin-top: 50px;
+}
 
 .create-quiz h2 {
   font-weight: 700;
@@ -257,7 +261,6 @@ form,
 .create-finish h2 {
   font-weight: 700;
   font-size: 23px;
-  margin-bottom: 46px;
 }
 
 .finish {
@@ -274,6 +277,7 @@ form,
 .finish img {
   position: relative;
 }
+
 
 .finish h3 {
   display: flex;

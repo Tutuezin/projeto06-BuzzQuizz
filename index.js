@@ -1,4 +1,4 @@
-const API = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
+const API = "https://mock-api.driven.com.br/api/v3/buzzquizz/quizzes";
 const quizBox = document.querySelector(".boxes-quizz");
 const questions = document.querySelector(".container");
 
@@ -8,6 +8,7 @@ let quizClickada;
 let allQuest = document.querySelectorAll(".choices");
 let quizId;
 let score = 0;
+let lista;
 
 function getQuizz() {
   axios.get(API).then((e) => {
@@ -16,17 +17,44 @@ function getQuizz() {
   });
 }
 
+function verifyLocal(){
+  if(localStorage){
+    lista = JSON.parse(localStorage['ids']);
+    return true;
+  }
+  return false;
+}
+
 // Function renderiza as quizz
 function writeQuizz() {
   quizBox.innerHTML = "";
-  quizzes.forEach((element) => {
-    quizBox.innerHTML += `<div class="box-quiz" id="${element.id}">
-        <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
-        <div class="sombra">
-        <span class="title">${element.title}</span>
-        </div>
-    </div>`;
-  });
+  verifyLocal();
+  if(verifyLocal()){
+    document.querySelector(".createQuizz").classList.add("my")
+    document.querySelector(".createQuizz").innerHTML = ''
+    quizzes.forEach((element) => {
+      console.log(lista.includes(element.id))
+      
+      if(lista.includes(element.id)){
+        console.log("aq")
+      document.querySelector(".createQuizz").innerHTML += `<div class="box-quiz" id="${element.id}">
+          <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
+          <div class="sombra">
+          <span class="title">${element.title}</span>
+          </div>
+      </div>`;
+    }
+      else{
+        quizBox.innerHTML += `<div class="box-quiz" id="${element.id}">
+          <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
+          <div class="sombra">
+          <span class="title">${element.title}</span>
+          </div>
+      </div>`;
+      }
+    });
+  }
+  
   getOneQuiz();
 }
 
@@ -184,13 +212,3 @@ function writeScore() {
                 
 }
 
-
-function local(){
-  let guarda = JSON.stringify(quizClickada);
-
-  window.localStorage.setItem("quiz", guarda);
-
-  let novo = JSON.parse(localStorage.getItem("quiz"));
-
-
-}
