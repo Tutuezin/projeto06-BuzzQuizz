@@ -26,10 +26,11 @@ main {
   font-weight: 700;
   color: #ffffff;
 }
-
+.cria{
+  flex-direction: column;
+}
 .top-side,
 .screen,
-.createQuizz,
 .boxes-quizz,
 .description,
 .btncreatequizz,
@@ -50,6 +51,7 @@ main {
 
 .createQuizz {
   flex-direction: column;
+  justify-content: center;
   margin-top: 146px;
   margin-bottom: 77px;
   width: 100%;
@@ -254,6 +256,15 @@ main {
   color: #fff5f4;
   background-color: #ec362d;
 }
+.seuQuiz{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+ion-icon{
+  font-size: 50px;
+  color: #ec362d;
+}
 
 .btn.restartquiz:hover {
   transform: scale(1.01);
@@ -306,7 +317,7 @@ img {
     width: 100%;
   }
   .allQuizz {
-    width: 90%;
+    width: 100%;
   }
   .boxes-quizz {
     flex-direction: column;
@@ -325,5 +336,7 @@ img {
   }
   .bot-quiz {
     width: 100%;
+  }.seuQuiz{
+    justify-content: space-between;
   }
 }

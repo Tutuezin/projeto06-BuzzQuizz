@@ -8,17 +8,18 @@ let quizClickada;
 let allQuest = document.querySelectorAll(".choices");
 let quizId;
 let score = 0;
-let lista;
+let lista =[];
 
 function getQuizz() {
   axios.get(API).then((e) => {
+    console.log(e.data)
     quizzes = e.data;
     writeQuizz();
   });
 }
 
 function verifyLocal(){
-  if(localStorage){
+  if(localStorage['ids']){
     lista = JSON.parse(localStorage['ids']);
     return true;
   }
@@ -28,16 +29,17 @@ function verifyLocal(){
 // Function renderiza as quizz
 function writeQuizz() {
   quizBox.innerHTML = "";
-  verifyLocal();
+  verifyLocal
   if(verifyLocal()){
     document.querySelector(".createQuizz").classList.add("my")
-    document.querySelector(".createQuizz").innerHTML = ''
+    document.querySelector(".createQuizz").innerHTML = `<div class="seuQuiz">
+    <strong style="font-size:23px">Seus Quizzes</strong>
+    <ion-icon size="large"name="add-circle"></ion-icon></div>
+    <div class="myquiz"></div>`
     quizzes.forEach((element) => {
-      console.log(lista.includes(element.id))
-      
       if(lista.includes(element.id)){
         console.log("aq")
-      document.querySelector(".createQuizz").innerHTML += `<div class="box-quiz" id="${element.id}">
+      document.querySelector(".myquiz").innerHTML += `<div class="box-quiz" id="${element.id}">
           <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
           <div class="sombra">
           <span class="title">${element.title}</span>
@@ -53,10 +55,22 @@ function writeQuizz() {
       </div>`;
       }
     });
+  }else{
+    quizzes.forEach((element)=>{
+      
+    quizBox.innerHTML += `<div class="box-quiz" id="${element.id}">
+          <img class="gradient"  width="340px" height="181px" src="${element.image}" alt="">
+          <div class="sombra">
+          <span class="title">${element.title}</span>
+          </div>
+      </div>`;
+  }
+    )}
+    getOneQuiz();
   }
   
-  getOneQuiz();
-}
+  
+
 
 // Function devolver id do quizz clicado
 
